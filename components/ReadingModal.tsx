@@ -192,12 +192,12 @@ export function ReadingModal({
   const fontSizeClasses = useMemo(() => {
     switch (fontSizeIndex) {
       case 0:
-        return "text-[17px] leading-[1.85]";
+        return "text-[16px] leading-[1.75]";
       case 2:
-        return "text-[22px] leading-[1.95]";
+        return "text-[21px] leading-[1.85]";
       case 1:
       default:
-        return "text-[19px] leading-[1.9]";
+        return "text-[18px] leading-[1.8]";
     }
   }, [fontSizeIndex]);
 
@@ -348,12 +348,12 @@ export function ReadingModal({
               </div>
               <h1
                 id="reading-story-title"
-                className="font-display text-3xl sm:text-4xl md:text-[40px] text-[#F8EDF2] font-medium leading-tight"
+                className="font-display text-2xl sm:text-3xl md:text-[36px] text-[#F8EDF2] font-medium leading-tight"
               >
                 {story.title}
               </h1>
               {story.subtitle && (
-                <p className="font-display italic text-[#BFA5B1] text-lg sm:text-xl">
+                <p className="font-sans text-sm sm:text-base font-medium tracking-wide text-[#BFA5B1]">
                   {story.subtitle}
                 </p>
               )}
@@ -390,7 +390,7 @@ export function ReadingModal({
 
           {/* Ending Block */}
           <div className="pt-16 pb-12 text-center border-t border-[rgba(198,107,145,0.14)] space-y-8 mt-12">
-            <p className="font-display italic text-2xl text-[#C66B91] max-w-md mx-auto leading-relaxed">
+            <p className="font-reading italic text-xl sm:text-2xl text-[#C66B91] max-w-md mx-auto leading-relaxed">
               {endingLine}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

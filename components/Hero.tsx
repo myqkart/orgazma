@@ -16,12 +16,12 @@ export function Hero({ hasFeatured = true }: HeroProps) {
 
       <div className="max-w-4xl mx-auto flex flex-col items-center space-y-8 pt-16 pb-24">
         {/* Headline */}
-        <h1 className="font-display text-4xl sm:text-6xl md:text-[68px] font-medium tracking-tight text-[#F8EDF2] leading-[1.12] drop-shadow-sm max-w-3xl animate-in fade-in slide-in-from-bottom-3 duration-700">
+        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-medium tracking-normal text-[#F8EDF2] leading-[1.18] drop-shadow-sm max-w-3xl animate-in fade-in slide-in-from-bottom-3 duration-700">
           Read what you&apos;d never say out loud.
         </h1>
 
         {/* Tagline */}
-        <p className="font-display italic text-lg sm:text-2xl text-[#BFA5B1] max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+        <p className="font-reading text-lg sm:text-xl text-[#BFA5B1] max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
           Slow burns, hungry mornings and the kind of heat that follows you into the day.
         </p>
 
@@ -51,7 +51,7 @@ export function Hero({ hasFeatured = true }: HeroProps) {
           className="group flex flex-col items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C66B91] rounded-sm py-1"
           aria-label="Scroll lower into stories"
         >
-          <span className="font-display italic text-sm tracking-wide">
+          <span className="font-reading italic text-sm tracking-wide">
             Go on. Lower.
           </span>
           <svg

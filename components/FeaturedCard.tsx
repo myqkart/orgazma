@@ -55,12 +55,12 @@ export function FeaturedCard({ story, onOpen }: FeaturedCardProps) {
             <Pill>{story.readTimeMinutes} min of your own time</Pill>
           </div>
 
-          <div className="space-y-3">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-[42px] font-medium text-[#F8EDF2] leading-[1.15]">
+          <div className="space-y-2.5">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-medium text-[#F8EDF2] leading-[1.2]">
               {story.title}
             </h2>
             {story.subtitle && (
-              <p className="font-display italic text-[#BFA5B1] text-lg sm:text-xl">
+              <p className="font-sans text-sm sm:text-base font-medium tracking-wide text-[#BFA5B1]">
                 {story.subtitle}
               </p>
             )}
@@ -81,7 +81,7 @@ export function FeaturedCard({ story, onOpen }: FeaturedCardProps) {
                 Read it now
               </Button>
             </div>
-            <p className="font-display italic text-sm text-[#BFA5B1] pl-1">
+            <p className="font-reading italic text-sm text-[#BFA5B1] pl-1">
               Best read alone, door closed.
             </p>
           </div>

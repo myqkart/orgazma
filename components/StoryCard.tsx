@@ -65,16 +65,16 @@ export function StoryCard({ story, onOpen, priority = false }: StoryCardProps) {
 
       {/* Content Section */}
       <div className="flex flex-col flex-1 p-6 sm:p-7 justify-between">
-        <div className="space-y-3">
-          <h3 className="font-display text-2xl sm:text-[26px] font-medium text-[#F8EDF2] leading-snug group-hover:text-[#C66B91] transition-colors duration-200">
+        <div className="space-y-2.5">
+          <h3 className="font-display text-xl sm:text-[23px] font-medium text-[#F8EDF2] leading-snug group-hover:text-[#C66B91] transition-colors duration-200">
             {story.title}
           </h3>
           {story.subtitle && (
-            <p className="font-display italic text-[#BFA5B1] text-sm sm:text-base leading-relaxed">
+            <p className="font-sans text-xs sm:text-[13px] font-medium tracking-wide text-[#BFA5B1]/90">
               {story.subtitle}
             </p>
           )}
-          <p className="font-sans text-sm text-[#F8EDF2]/80 line-clamp-3 leading-relaxed pt-1">
+          <p className="font-reading text-sm sm:text-[15px] text-[#F8EDF2]/80 line-clamp-3 leading-relaxed pt-1">
             {story.previewText}
           </p>
         </div>

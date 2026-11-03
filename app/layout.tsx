@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Literata, Inter } from "next/font/google";
+import { Playfair_Display, Lora, Inter } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  variable: "--font-playfair",
   display: "swap",
 });
 
-const literata = Literata({
+const lora = Lora({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
-  variable: "--font-literata",
+  variable: "--font-lora",
   display: "swap",
 });
 
@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${literata.variable} ${inter.variable}`}
+      className={`${playfair.variable} ${lora.variable} ${inter.variable}`}
     >
       <body className="min-h-screen bg-[#0E080D] text-[#F8EDF2] font-[family-name:var(--font-inter)] antialiased relative selection:bg-[#702442] selection:text-[#F8EDF2]">
         <div className="grain-overlay" aria-hidden="true" />
