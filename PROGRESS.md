@@ -9,3 +9,4 @@
 | Phase 5 | Featured & Stories Grid | Complete | FeaturedStory section (#pick), StoriesGrid (#collection) with responsive 3/2/1 layout, client-side search with no-results state |
 | Phase 6 | Reading Modal | Complete | ReadingModal with progress line, font sizing (A-/A+), focus trap, scroll lock, Esc/Back support, plain-text scene breaks, StoryReader hash sync (#story=slug); lint and build clean |
 | Phase 7 | Age Gate & Persistence | Complete | AgeGate with useSyncExternalStore hydration safety, decline redirect, reading position pos:{slug} tracking with resume toast; lint and build clean |
+| Phase 8 | Polish & Accessibility | Complete | Keyboard navigation, dialog ARIA, focus rings, reduced-motion queries, contrast compliance, comprehensive README; lint and build clean |
