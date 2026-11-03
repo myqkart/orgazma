@@ -3,11 +3,34 @@ import { StoriesGrid } from "@/components/StoriesGrid";
 import { SafeImage } from "@/components/ui/ImageFallback";
 import { Container } from "@/components/ui/Container";
 import { getAllStories } from "@/lib/stories";
-import { ATMOS } from "@/lib/site";
+import { ATMOS, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "The Heat",
-  description: "Browse every explicit erotic story. Hunt a craving. Read until you're ruined.",
+  title: SITE.pages.stories.title,
+  description: SITE.pages.stories.description,
+  alternates: { canonical: "/stories" },
+  openGraph: {
+    type: "website",
+    locale: SITE.locale,
+    url: "/stories",
+    siteName: SITE.name,
+    title: SITE.pages.stories.title,
+    description: SITE.pages.stories.description,
+    images: [
+      {
+        url: SITE.ogImage.url,
+        width: SITE.ogImage.width,
+        height: SITE.ogImage.height,
+        alt: "The Heat archive",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.pages.stories.title,
+    description: SITE.pages.stories.description,
+    images: [SITE.ogImage.url],
+  },
 };
 
 export default function StoriesPage() {

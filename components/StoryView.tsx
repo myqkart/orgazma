@@ -112,8 +112,45 @@ export function StoryView({ story, nextSlug }: StoryViewProps) {
   }, []);
 
   useEffect(() => {
-    document.title = `${story.title} · Orgazma`;
-  }, [story.title]);
+    const title = `${story.title} — explicit erotic story`;
+    const description =
+      story.previewText?.slice(0, 155).trim() ||
+      `${story.title} — explicit erotic fiction on Orgazma. 18+ only.`;
+
+    document.title = title;
+
+    const ensureMeta = (selector: string, attr: string, value: string) => {
+      let el = document.querySelector(selector) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement("meta");
+        if (selector.includes("property=")) {
+          el.setAttribute("property", selector.split('"')[1]);
+        } else {
+          el.setAttribute("name", selector.split('"')[1]);
+        }
+        document.head.appendChild(el);
+      }
+      el.setAttribute(attr, value);
+    };
+
+    ensureMeta('meta[name="description"]', "content", description);
+    ensureMeta('meta[property="og:title"]', "content", title);
+    ensureMeta('meta[property="og:description"]', "content", description);
+    ensureMeta('meta[property="og:image"]', "content", story.imageUrl);
+    ensureMeta('meta[name="twitter:title"]', "content", title);
+    ensureMeta('meta[name="twitter:description"]', "content", description);
+    ensureMeta('meta[name="twitter:image"]', "content", story.imageUrl);
+
+    let canonical = document.querySelector(
+      'link[rel="canonical"]'
+    ) as HTMLLinkElement | null;
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = `${window.location.origin}/stories/${story.slug}`;
+  }, [story.title, story.previewText, story.imageUrl, story.slug]);
 
   useEffect(() => {
     const onScroll = () => {

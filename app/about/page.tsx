@@ -5,8 +5,31 @@ import { SafeImage } from "@/components/ui/ImageFallback";
 import { ATMOS, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "After Dark",
-  description: SITE.description,
+  title: SITE.pages.about.title,
+  description: SITE.pages.about.description,
+  alternates: { canonical: "/about" },
+  openGraph: {
+    type: "website",
+    locale: SITE.locale,
+    url: "/about",
+    siteName: SITE.name,
+    title: SITE.pages.about.title,
+    description: SITE.pages.about.description,
+    images: [
+      {
+        url: SITE.ogImage.url,
+        width: SITE.ogImage.width,
+        height: SITE.ogImage.height,
+        alt: "Orgazma after dark",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.pages.about.title,
+    description: SITE.pages.about.description,
+    images: [SITE.ogImage.url],
+  },
 };
 
 export default function AboutPage() {

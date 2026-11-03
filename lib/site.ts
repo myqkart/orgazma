@@ -2,10 +2,56 @@
 
 export const SITE = {
   name: "Orgazma",
+  shortName: "Orgazma",
   tagline: "Filthy fiction for nights you can't sleep through.",
   description:
-    "Explicit erotic stories for adults who want heat, hunger, and a door that locks. 18+ only.",
+    "Explicit erotic stories for adults who want heat, hunger, and a door that locks. Midnight reading for the desperately wet. 18+ only.",
+  longDescription:
+    "Orgazma is an adults-only erotic fiction library made for locked doors and low lights. Slow burns, filthy mornings, and intimate bedtime stories — written to be read alone.",
+  /** Override at deploy with NEXT_PUBLIC_SITE_URL if needed. */
+  url: "https://orgazma.app",
+  locale: "en_US",
+  language: "en",
+  creator: "Orgazma",
+  twitterHandle: "@orgazma",
+  email: "hello@orgazma.app",
   ageNote: "Adults only. Every character is 18+. Minors stay out.",
+  keywords: [
+    "erotic fiction",
+    "adult stories",
+    "erotica",
+    "sexy short stories",
+    "explicit romance",
+    "bedtime erotica",
+    "intimate fiction",
+    "18+ stories",
+    "midnight reading",
+    "lusty stories",
+    "Orgazma",
+  ],
+  ogImage: {
+    url: "/og.jpg",
+    width: 1200,
+    height: 630,
+    alt: "Orgazma — intimate erotic fiction after dark",
+  },
+  pages: {
+    home: {
+      title: "Orgazma — Explicit erotic fiction after midnight",
+      description:
+        "Filthy bedtime stories for hungry adults. Read explicit erotic fiction under the stars — locked doors only. 18+.",
+    },
+    stories: {
+      title: "The Heat — every filthy story",
+      description:
+        "Browse Orgazma's full archive of explicit erotic stories. Hunt a craving. Open a door. Read until you're ruined. 18+.",
+    },
+    about: {
+      title: "After Dark — what Orgazma is",
+      description:
+        "Orgazma is a private reading room for adults who want explicit heat, midnight atmosphere, and stories that stay between the sheets. 18+ only.",
+    },
+  },
 } as const;
 
 const u = (id: string, w = 1600) =>
@@ -13,17 +59,11 @@ const u = (id: string, w = 1600) =>
 
 /** Intimate / bedtime / seductive Unsplash URLs for UI surfaces. */
 export const ATMOS = {
-  // Couple in bed — soft morning intimacy
   hero: u("photo-1758523666970-07b30de4c9d1", 2400),
-  // Candlelit almost-kiss
   heroSoft: u("photo-1560439972-1af698047fa3", 2000),
-  // Rose petals / bedroom romance
   ageGate: u("photo-1518199266791-5375a83190b7", 1800),
-  // Hands in bed, candles, petals
   collection: u("photo-1578359218607-e41323f6b5ff", 2000),
-  // Intimate embrace
   about: u("photo-1516589178581-6cd7833ae3b2", 2000),
-  // Soft lusty couple
   footer: u("photo-1529333166437-7750a6dd5a70", 2000),
   readingGlow: u("photo-1758523666996-7540603c85a7", 1600),
   ambient: [

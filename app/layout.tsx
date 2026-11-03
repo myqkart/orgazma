@@ -13,6 +13,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: "#04060f",
+  colorScheme: "dark",
 };
 
 const display = Cormorant_Garamond({
@@ -38,15 +39,66 @@ const sans = Syne({
   display: "swap",
 });
 
+/**
+ * Keep root metadata free of `alternates` / `openGraph` / `twitter`.
+ * Those fields break Cache Components prerender for /stories/[slug].
+ * Static pages export their own social tags; story pages hoist <title>/<meta> in-tree.
+ */
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — Explicit erotic fiction`,
+    default: SITE.pages.home.title,
     template: `%s · ${SITE.name}`,
   },
   description: SITE.description,
+  applicationName: SITE.name,
+  authors: [{ name: SITE.creator, url: SITE.url }],
+  creator: SITE.creator,
+  publisher: SITE.creator,
+  keywords: [...SITE.keywords],
+  category: "adult entertainment",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: [{ url: "/favicon.ico", sizes: "any" }],
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: SITE.name,
+    statusBarStyle: "black-translucent",
+  },
   other: {
     rating: "adult",
     "RTA-5042-1996-1400-1577-RTA": "RTA-5042-1996-1400-1577-RTA",
+  },
+};
+
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  inLanguage: SITE.language,
+  audience: {
+    "@type": "PeopleAudience",
+    requiredMinAge: 18,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: SITE.creator,
+    url: SITE.url,
   },
 };
 
@@ -57,10 +109,14 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang={SITE.language}
       className={`${display.variable} ${reading.variable} ${sans.variable}`}
     >
       <body className="min-h-screen bg-background text-foreground font-sans antialiased relative selection:bg-primary selection:text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
+        />
         <div className="grain-overlay" aria-hidden="true" />
         <AgeGate>
           <Suspense fallback={null}>
