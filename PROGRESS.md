@@ -6,3 +6,4 @@
 | Phase 2 | Data Layer | Complete | data/stories.json with 6 stories, types/story.ts, lib/stories.ts with validation and unique slug derivation |
 | Phase 3 | Shared Components | Complete | Button, Pill, Container, SafeImage, StoryCard, FeaturedCard, SystemStates (Loading/Empty/Error); lint and build clean |
 | Phase 4 | Navigation, Hero & Footer | Complete | Client Navigation with scroll blur and mobile menu, Hero with candlelight glow and CTAs, Footer with adult notice, assembled in page.tsx |
+| Phase 5 | Featured & Stories Grid | Complete | FeaturedStory section (#pick), StoriesGrid (#collection) with responsive 3/2/1 layout, client-side search with no-results state |
