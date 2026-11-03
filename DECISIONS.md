@@ -21,8 +21,8 @@ And font families:
 - `--font-reading: var(--font-literata), Georgia, serif`
 - `--font-sans: var(--font-inter), system-ui, sans-serif`
 
-## Decision 3: Lucide Icons
-`lucide-react` is already installed in `node_modules` (as seen in npm install). We use lightweight SVG icons (`X`, `Menu`, `ArrowRight`, `Minus`, `Plus`, `Moon`, `Flame`) from `lucide-react` or clean inline SVG components matching exact design requirements.
+## Decision 3: Server Component Footer & Prerender Stability
+In Next.js 16 with cache components / static generation, evaluating `new Date()` inside client component render breaks static prerendering. Following the prompt guidance ("page.tsx, Hero, Footer and the Featured/Grid sections can be server components"), `Footer` is maintained as a server component with a deterministic year prop defaulting to 2026 and standard `#` anchor with smooth scrolling.
 
 ## Decision 4: Smooth Animation & Reduced Motion
 Transitions are built with standard Tailwind/CSS transitions and keyframes, with `@media (prefers-reduced-motion: reduce)` disabling translate/scale while keeping gentle opacity transitions. This avoids unnecessary client bundle bloat and provides instant, glitch-free rendering.
