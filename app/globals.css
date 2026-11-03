@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: #0c1420;
+  --color-surface: #172235;
+  --color-card: #22334a;
+  --color-primary: #4c87a5;
+  --color-primary-hover: #5b97b5;
+  --color-accent: #8dc2d0;
+  --color-text-main: #e6eef0;
+  --color-foreground: #e6eef0;
+  --color-muted: #a0b0c0;
+  --color-border-subtle: rgba(141, 194, 208, 0.14);
+  --color-glow: rgba(141, 194, 208, 0.25);
+  --color-overlay: rgba(12, 20, 32, 0.88);
+
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-reading: var(--font-literata), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --radius-card: 20px;
+  --radius-button: 14px;
+  --radius-modal: 24px;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0c1420;
+  --foreground: #e6eef0;
+  --surface: #172235;
+  --card: #22334a;
+  --primary: #4c87a5;
+  --primary-hover: #5b97b5;
+  --accent: #8dc2d0;
+  --muted: #a0b0c0;
+  --border-subtle: rgba(141, 194, 208, 0.14);
+  --glow: rgba(141, 194, 208, 0.25);
+  --overlay: rgba(12, 20, 32, 0.88);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background-color: #0c1420;
+  color: #e6eef0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0c1420;
+  color: #e6eef0;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tactile grain overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Universal accessible focus ring */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Candlelight / atmospheric radial glow */
+.candlelight-glow {
+  background: radial-gradient(circle at 50% 40%, rgba(141, 194, 208, 0.1) 0%, rgba(12, 20, 32, 0) 70%);
+}
+
+.candlelight-glow-pulse {
+  background: radial-gradient(circle at 50% 50%, rgba(141, 194, 208, 0.11) 0%, rgba(12, 20, 32, 0) 75%);
+  animation: pulse-glow 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .candlelight-glow-pulse {
+    animation: none !important;
+    transform: none !important;
+  }
 }
