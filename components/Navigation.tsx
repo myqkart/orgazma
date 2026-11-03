@@ -1,152 +1,163 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { HeartOrnament, SparkleOrnament } from "@/components/decor/Ornaments";
+import { SITE } from "@/lib/site";
 
-interface NavigationProps {
-  hasFeatured?: boolean;
-}
+const LINKS = [
+  { href: "/", label: "Tonight" },
+  { href: "/stories", label: "The Heat" },
+  { href: "/about", label: "After Dark" },
+];
 
-export function Navigation({ hasFeatured = true }: NavigationProps) {
+export function Navigation() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isReading = pathname?.startsWith("/stories/") && pathname !== "/stories";
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 18);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const closeMenu = () => setMobileMenuOpen(false);
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobileMenuOpen]);
+
+  // Reading pages use StoryView's own chrome
+  if (isReading) return null;
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-out ${
-        scrolled
-          ? "bg-[#0E080D]/80 backdrop-blur-xl border-b border-white/[0.08] py-3.5 shadow-[0_15px_35px_rgba(0,0,0,0.5)]"
-          : "bg-transparent py-5 sm:py-6"
-      }`}
-    >
-      <div className="max-w-[1200px] mx-auto px-6 md:px-8 flex items-center justify-between">
-        {/* Wordmark with modern subtle crest */}
-        <a
-          href="#"
-          className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C66B91] rounded-lg"
-          onClick={() => {
-            if (typeof window !== "undefined") {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }
-          }}
+    <header className="fixed top-0 left-0 right-0 z-40 px-3 sm:px-5 md:px-8 pt-[max(0.75rem,env(safe-area-inset-top))] sm:pt-[max(1rem,env(safe-area-inset-top))] pointer-events-none">
+      <div
+        className={`pointer-events-auto mx-auto max-w-[980px] transition-all duration-500 ease-out ${
+          scrolled ? "sm:scale-[0.98]" : "scale-100"
+        }`}
+      >
+        <div
+          className={`relative overflow-hidden rounded-[22px] sm:rounded-full border transition-all duration-500 ${
+            scrolled
+              ? "bg-surface/90 backdrop-blur-2xl border-white/[0.1] shadow-[0_18px_50px_rgba(0,0,0,0.55)]"
+              : "bg-black/35 backdrop-blur-xl border-white/[0.12] shadow-[0_10px_40px_rgba(0,0,0,0.35)]"
+          }`}
         >
-          <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#702442] to-[#C66B91] flex items-center justify-center p-[1px] shadow-[0_0_15px_rgba(198,107,145,0.4)] group-hover:scale-105 transition-transform duration-300">
-            <div className="w-full h-full rounded-full bg-[#0E080D] flex items-center justify-center">
-              <span className="text-[10px] font-display font-bold text-[#C66B91]">V</span>
+          <div className="absolute inset-0 shimmer-border opacity-30 pointer-events-none" />
+          <div className="relative flex items-center justify-between gap-2 sm:gap-3 px-3.5 sm:px-5 min-h-12 py-2.5 sm:py-3.5">
+            <Link
+              href="/"
+              className="group flex items-center gap-2 sm:gap-2.5 shrink-0 min-w-0 focus-visible:outline-none touch-manipulation"
+            >
+              <span className="relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center shrink-0">
+                <span className="absolute inset-0 rounded-full bg-primary/40 blur-md group-hover:bg-primary/60 transition-colors" />
+                <span className="relative h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-gradient-to-br from-primary to-accent/70 flex items-center justify-center ring-1 ring-white/20">
+                  <HeartOrnament className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#1a1408]" />
+                </span>
+              </span>
+              <span className="font-display text-lg sm:text-2xl font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors truncate">
+                {SITE.name}
+              </span>
+              <SparkleOrnament className="hidden sm:block w-3 h-3 text-primary/70 animate-sparkle shrink-0" />
+            </Link>
+
+            <nav className="hidden md:flex items-center gap-1" aria-label="Main">
+              {LINKS.map((link) => {
+                const active =
+                  link.href === "/"
+                    ? pathname === "/"
+                    : pathname?.startsWith(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`px-4 py-2 rounded-full font-sans text-[13px] font-medium transition-all duration-200 touch-manipulation ${
+                      active
+                        ? "bg-primary/20 text-primary shadow-[inset_0_0_0_1px_rgba(230,179,90,0.35)]"
+                        : "text-foreground/75 hover:text-foreground hover:bg-white/[0.06]"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+              <span className="ml-1 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/15 border border-primary/30 text-primary text-[10px] font-sans font-semibold tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                18+
+              </span>
+            </nav>
+
+            <div className="flex md:hidden items-center gap-1.5 shrink-0">
+              <span className="inline-flex items-center px-2 py-1 rounded-full bg-primary/15 border border-primary/30 text-primary text-[10px] font-sans font-semibold tracking-wider">
+                18+
+              </span>
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen((v) => !v)}
+                aria-expanded={mobileMenuOpen}
+                aria-label="Toggle menu"
+                className="touch-target w-11 h-11 rounded-full bg-white/[0.06] border border-white/[0.12] flex items-center justify-center text-foreground hover:text-primary cursor-pointer touch-manipulation"
+              >
+                {mobileMenuOpen ? (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
-          <span className="font-display text-2xl sm:text-[26px] font-medium tracking-tight text-[#F8EDF2] group-hover:text-[#C66B91] transition-colors duration-200">
-            Velvet Hours
-          </span>
-        </a>
-
-        {/* Desktop Navigation Links */}
-        <nav
-          className="hidden md:flex items-center gap-2 lg:gap-3 bg-[#1C101A]/60 backdrop-blur-md p-1.5 px-3 rounded-full border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.25)]"
-          aria-label="Main Navigation"
-        >
-          {hasFeatured && (
-            <a
-              href="#pick"
-              className="px-4 py-1.5 rounded-full font-sans text-xs sm:text-[13px] font-medium tracking-wide text-[#F8EDF2]/80 hover:text-[#F8EDF2] hover:bg-white/[0.06] transition-all duration-200"
-            >
-              Tonight&apos;s Pick
-            </a>
-          )}
-          <a
-            href="#collection"
-            className="px-4 py-1.5 rounded-full font-sans text-xs sm:text-[13px] font-medium tracking-wide text-[#F8EDF2]/80 hover:text-[#F8EDF2] hover:bg-white/[0.06] transition-all duration-200"
-          >
-            The Collection
-          </a>
-          <div className="pl-1">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#702442]/30 border border-[#C66B91]/30 text-[#C66B91] text-[10px] font-sans font-semibold tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91] animate-pulse" />
-              18+
-            </span>
-          </div>
-        </nav>
-
-        {/* Mobile Hamburger Button */}
-        <div className="flex md:hidden items-center gap-2.5">
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#702442]/30 border border-[#C66B91]/30 text-[#C66B91] text-[10px] font-sans font-semibold tracking-wider">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]" />
-            18+
-          </span>
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-expanded={mobileMenuOpen}
-            aria-label="Toggle navigation menu"
-            className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#F8EDF2] hover:text-[#C66B91] hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-[#C66B91] transition-all cursor-pointer"
-          >
-            {mobileMenuOpen ? (
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-            )}
-          </button>
         </div>
+
+        {mobileMenuOpen && (
+          <>
+            <button
+              type="button"
+              aria-label="Close menu"
+              className="fixed inset-0 z-40 bg-black/55 backdrop-blur-sm md:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className="relative z-50 md:hidden mt-2 p-2 rounded-[22px] bg-surface/95 backdrop-blur-2xl border border-white/[0.1] shadow-2xl">
+              <nav className="flex flex-col gap-1" aria-label="Mobile">
+                {LINKS.map((link) => {
+                  const active =
+                    link.href === "/"
+                      ? pathname === "/"
+                      : pathname?.startsWith(link.href);
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`font-sans text-base font-medium py-3.5 px-4 rounded-2xl transition-all touch-manipulation text-center ${
+                        active
+                          ? "bg-primary/20 text-primary"
+                          : "text-foreground hover:text-primary hover:bg-white/[0.05]"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </nav>
+            </div>
+          </>
+        )}
       </div>
-
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="md:hidden mt-3 mx-4 p-5 rounded-2xl bg-[#1C101A]/95 backdrop-blur-2xl border border-white/[0.1] shadow-2xl animate-in fade-in slide-in-from-top-3 duration-300">
-          <nav className="flex flex-col gap-2 text-center" aria-label="Mobile Navigation">
-            {hasFeatured && (
-              <a
-                href="#pick"
-                onClick={closeMenu}
-                className="font-sans text-sm font-medium text-[#F8EDF2] hover:text-[#C66B91] py-2.5 rounded-xl hover:bg-white/[0.05] transition-all"
-              >
-                Tonight&apos;s Pick
-              </a>
-            )}
-            <a
-              href="#collection"
-              onClick={closeMenu}
-              className="font-sans text-sm font-medium text-[#F8EDF2] hover:text-[#C66B91] py-2.5 rounded-xl hover:bg-white/[0.05] transition-all"
-            >
-              The Collection
-            </a>
-          </nav>
-        </div>
-      )}
     </header>
   );
 }

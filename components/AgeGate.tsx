@@ -2,6 +2,14 @@
 
 import React, { useSyncExternalStore, useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
+import { SafeImage } from "@/components/ui/ImageFallback";
+import {
+  FlourishOrnament,
+  HeartOrnament,
+  RoseOrnament,
+  SparkleOrnament,
+} from "@/components/decor/Ornaments";
+import { ATMOS, SITE } from "@/lib/site";
 
 function subscribe(callback: () => void) {
   window.addEventListener("storage", callback);
@@ -20,12 +28,7 @@ function getServerSnapshot(): boolean {
   return false;
 }
 
-interface AgeGateProps {
-  children: React.ReactNode;
-}
-
-export function AgeGate({ children }: AgeGateProps) {
-  // useSyncExternalStore safely reads localStorage on client and avoids SSR mismatch
+export function AgeGate({ children }: { children: React.ReactNode }) {
   const isVerifiedFromStorage = useSyncExternalStore(
     subscribe,
     getSnapshot,
@@ -36,9 +39,7 @@ export function AgeGate({ children }: AgeGateProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setMounted(true);
-    }, 0);
+    const timer = setTimeout(() => setMounted(true), 0);
     return () => clearTimeout(timer);
   }, []);
 
@@ -48,121 +49,103 @@ export function AgeGate({ children }: AgeGateProps) {
     try {
       localStorage.setItem("ageOk", "1");
     } catch {
-      // Ignore storage errors
+      // ignore
     }
     setHasAcceptedLocally(true);
   };
 
   const handleDecline = () => {
-    if (typeof window !== "undefined") {
-      window.location.href = "https://www.google.com";
-    }
+    window.location.href = "https://www.google.com";
   };
 
-  // Prevent hydration flash: render neutral dark screen until mounted
   if (!mounted) {
     return (
-      <div
-        className="fixed inset-0 z-50 bg-[#0E080D] flex items-center justify-center"
-        aria-hidden="true"
-      >
-        <div className="w-2.5 h-2.5 rounded-full bg-[#C66B91]/40 animate-ping" />
+      <div className="fixed inset-0 z-50 bg-background flex items-center justify-center" aria-hidden="true">
+        <div className="w-2.5 h-2.5 rounded-full bg-primary/50 animate-ping" />
       </div>
     );
   }
 
-  // If age is not verified, show full-screen Age Gate
   if (!isAgeVerified) {
     return (
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-[#0E080D]/95 backdrop-blur-2xl overflow-y-auto"
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-5 overflow-y-auto overscroll-contain"
         role="dialog"
         aria-modal="true"
         aria-labelledby="agegate-headline"
+        style={{
+          paddingTop: "max(1rem, env(safe-area-inset-top))",
+          paddingBottom: "max(1rem, env(safe-area-inset-bottom))",
+        }}
       >
-        {/* Soft Accent ambient glow */}
-        <div
-          className="absolute w-[450px] h-[450px] rounded-full bg-[#702442]/25 blur-[140px] pointer-events-none"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute w-[350px] h-[350px] rounded-full bg-[#C66B91]/15 blur-[120px] pointer-events-none"
-          aria-hidden="true"
-        />
+        <div className="absolute inset-0">
+          <SafeImage
+            src={ATMOS.ageGate}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center saturate-[0.8] brightness-[0.32]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/65 via-background/85 to-background" />
+        </div>
 
-        <div className="relative w-full max-w-[500px] rounded-[32px] bg-[#1A1018]/90 backdrop-blur-2xl border border-white/[0.1] p-8 sm:p-11 shadow-[0_30px_90px_rgba(0,0,0,0.8)] text-center space-y-7 animate-in fade-in zoom-in-95 duration-400">
-          {/* Modern Seal Icon */}
-          <div className="flex justify-center">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#702442] to-[#C66B91] p-[1px] shadow-[0_0_25px_rgba(198,107,145,0.4)]">
-              <div className="w-full h-full rounded-full bg-[#0E080D] flex items-center justify-center text-[#C66B91]">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
-                  />
-                </svg>
-              </div>
+        <RoseOrnament className="hidden sm:block absolute top-[16%] left-[10%] w-16 h-16 text-accent/30 animate-float-soft" />
+        <SparkleOrnament className="absolute top-[12%] right-[10%] sm:top-[22%] sm:right-[16%] w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent/50 animate-sparkle" />
+
+        <div className="relative w-full max-w-[480px] my-auto rounded-[24px] sm:rounded-[32px] bg-surface/92 backdrop-blur-2xl border border-white/[0.1] p-6 sm:p-10 shadow-[0_30px_90px_rgba(0,0,0,0.85)] text-center space-y-5 sm:space-y-6 overflow-hidden">
+          <div className="absolute inset-0 shimmer-border opacity-20 pointer-events-none rounded-[24px] sm:rounded-[32px]" />
+          <div className="relative space-y-5 sm:space-y-6">
+            <div className="flex justify-center">
+              <span className="h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-gradient-to-br from-primary to-[#f0c574] flex items-center justify-center shadow-[0_0_30px_rgba(230,179,90,0.45)]">
+                <HeartOrnament className="w-5 h-5 text-[#1a1408]" />
+              </span>
             </div>
-          </div>
 
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]" />
-            <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-[#C66B91] font-semibold">
-              Adults only
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]" />
-          </div>
+            <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-primary font-semibold">
+              Locked. Adults only.
+            </p>
+            <FlourishOrnament className="mx-auto w-24 sm:w-28 h-5 sm:h-6 text-primary/50" />
 
-          {/* Headline */}
-          <h2
-            id="agegate-headline"
-            className="font-display text-3xl sm:text-4xl text-[#F8EDF2] font-medium leading-[1.2]"
-          >
-            Close the door behind you.
-          </h2>
-
-          {/* Subtext */}
-          <p className="font-reading text-[#F8EDF2]/85 text-base sm:text-[17px] leading-relaxed">
-            What&apos;s inside is written for grown women who know what they want. You must be 18 or older to enter.
-          </p>
-
-          {/* Modern Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <Button
-              variant="primary"
-              size="md"
-              onClick={handleAccept}
-              className="w-full sm:w-auto shadow-[0_12px_28px_rgba(112,36,66,0.4)]"
+            <h2
+              id="agegate-headline"
+              className="font-display text-[1.65rem] sm:text-4xl text-foreground font-semibold leading-[1.15] text-balance"
             >
-              I&apos;m 18+. Let me in.
-            </Button>
-            <Button
-              variant="glass"
-              size="md"
-              onClick={handleDecline}
-              className="w-full sm:w-auto"
-            >
-              Not tonight
-            </Button>
-          </div>
+              Slip inside. Leave the lights low.
+            </h2>
 
-          {/* Fine print */}
-          <p className="font-sans text-xs text-[#BFA5B1]/60 leading-relaxed pt-2 border-t border-white/[0.08]">
-            By entering you confirm you&apos;re an adult and that you&apos;re choosing to read adult fiction.
-          </p>
+            <p className="font-reading text-foreground/85 text-[15px] sm:text-[17px] leading-relaxed">
+              {SITE.name} is packed with explicit erotic fiction for hungry adults.
+              You must be 18 or older to open these pages.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-1">
+              <Button
+                variant="primary"
+                size="md"
+                onClick={handleAccept}
+                className="w-full sm:w-auto"
+              >
+                I&apos;m 18+. Undress the door.
+              </Button>
+              <Button
+                variant="glass"
+                size="md"
+                onClick={handleDecline}
+                className="w-full sm:w-auto"
+              >
+                Too young. Leave.
+              </Button>
+            </div>
+
+            <p className="font-sans text-xs text-muted/70 leading-relaxed pt-2 border-t border-white/[0.08]">
+              By entering you swear you&apos;re an adult craving adult heat.
+            </p>
+          </div>
         </div>
       </div>
     );
   }
 
-  // Once age verified, render children
   return <>{children}</>;
 }

@@ -1,100 +1,76 @@
-"use client";
-
 import React from "react";
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import { SafeImage } from "@/components/ui/ImageFallback";
+import { FlourishOrnament, RoseOrnament } from "@/components/decor/Ornaments";
 import type { StoryWithSlug } from "@/types/story";
 
 interface FeaturedCardProps {
   story: StoryWithSlug;
-  onOpen?: (slug: string) => void;
 }
 
-export function FeaturedCard({ story, onOpen }: FeaturedCardProps) {
-  const handleOpen = () => {
-    if (onOpen) onOpen(story.slug);
-  };
-
+export function FeaturedCard({ story }: FeaturedCardProps) {
   return (
-    <div className="relative group rounded-[28px] bg-gradient-to-br from-[#1C101A] to-[#291626] border border-white/[0.08] hover:border-[#C66B91]/35 p-6 sm:p-8 md:p-12 shadow-[0_30px_70px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-500">
-      {/* Background radial highlight */}
-      <div
-        className="absolute -top-32 -left-32 w-[450px] h-[450px] rounded-full bg-[#C66B91]/10 blur-[120px] pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -bottom-32 -right-32 w-[450px] h-[450px] rounded-full bg-[#702442]/20 blur-[130px] pointer-events-none"
-        aria-hidden="true"
-      />
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10">
-        {/* Left: Atmospheric Image with cinematic vignette */}
-        <div className="lg:col-span-5 relative">
-          <div className="relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] rounded-[22px] overflow-hidden bg-[#1C101A] shadow-[0_20px_45px_rgba(0,0,0,0.5)] border border-white/[0.08]">
-            <SafeImage
-              src={story.imageUrl}
-              alt={story.title}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 460px"
-              className="object-cover object-center saturate-[0.88] brightness-[0.92] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-            />
-            {/* Cinematic Gradient Vignette */}
-            <div
-              className="absolute inset-0 bg-gradient-to-t from-[#1C101A] via-transparent to-black/20 pointer-events-none"
-              aria-hidden="true"
-            />
-            {/* Floating read time badge */}
-            <div className="absolute top-4 right-4 z-20">
-              <Pill variant="glass">{story.readTimeMinutes} min of your own time</Pill>
-            </div>
+    <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
+      <div className="lg:col-span-6 relative">
+        <RoseOrnament className="hidden sm:block absolute -top-6 -left-4 w-16 h-16 text-accent/30 animate-float-soft z-20" />
+        <div className="relative aspect-[4/5] max-h-[70vh] sm:max-h-none mx-auto w-full overflow-hidden rounded-[24px] sm:rounded-[40px] bg-surface border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.45)] sm:shadow-[0_30px_70px_rgba(0,0,0,0.5)]">
+          <SafeImage
+            src={story.imageUrl}
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 560px"
+            className="object-cover object-center saturate-[0.9] brightness-[0.9] transition-transform duration-700 hover:scale-[1.03]"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-black/20"
+            aria-hidden="true"
+          />
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+            <Pill variant="glass">
+              <span className="sm:hidden">{story.readTimeMinutes} min</span>
+              <span className="hidden sm:inline">{story.readTimeMinutes} min of pure heat</span>
+            </Pill>
           </div>
         </div>
+      </div>
 
-        {/* Right: Story details */}
-        <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#702442]/40 border border-[#C66B91]/30 text-[#C66B91] text-[11px] font-sans font-semibold tracking-widest uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91] animate-pulse" />
-              Tonight&apos;s pick
-            </span>
-          </div>
-
-          <div className="space-y-3">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-medium text-[#F8EDF2] leading-[1.18] group-hover:text-[#F8EDF2] transition-colors">
-              {story.title}
-            </h2>
-            {story.subtitle && (
-              <p className="font-sans text-xs sm:text-sm font-medium uppercase tracking-[0.12em] text-[#C66B91]">
-                {story.subtitle}
-              </p>
-            )}
-          </div>
-
-          <p className="font-reading text-[#F8EDF2]/90 text-base sm:text-lg leading-relaxed line-clamp-4">
-            {story.previewText}
+      <div className="lg:col-span-6 flex flex-col justify-center space-y-4 sm:space-y-5">
+        <div className="space-y-2">
+          <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-accent font-semibold">
+            Tonight&apos;s filthy pick
           </p>
+          <FlourishOrnament className="w-24 sm:w-28 h-5 sm:h-6 text-accent/50" />
+        </div>
 
-          <div className="pt-3 space-y-3">
-            <div>
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={handleOpen}
-                aria-haspopup="dialog"
-                className="w-full sm:w-auto shadow-[0_15px_30px_rgba(112,36,66,0.35)]"
-              >
-                <span>Read it now</span>
-                <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                  &rarr;
-                </span>
-              </Button>
-            </div>
-            <p className="font-reading italic text-sm text-[#BFA5B1]/80 pl-1">
-              Best read alone, door closed.
+        <div className="space-y-2">
+          <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-5xl font-semibold text-foreground leading-[1.12] text-balance">
+            {story.title}
+          </h2>
+          {story.subtitle && (
+            <p className="font-sans text-[11px] sm:text-sm font-medium uppercase tracking-[0.12em] text-accent">
+              {story.subtitle}
             </p>
-          </div>
+          )}
+        </div>
+
+        <p className="font-reading text-foreground/90 text-[15px] sm:text-lg leading-relaxed line-clamp-4">
+          {story.previewText}
+        </p>
+
+        <div className="pt-1 sm:pt-2 space-y-3">
+          <Button
+            variant="primary"
+            size="lg"
+            href={`/stories/${story.slug}`}
+            className="w-full sm:w-auto"
+          >
+            Read it wet · now
+          </Button>
+          <p className="font-reading italic text-sm text-muted">
+            Best with the door locked and nothing under your clothes.
+          </p>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "ghost" | "glass";
@@ -17,44 +18,38 @@ export function Button({
   ...props
 }: ButtonProps) {
   const sizeClasses = {
-    sm: "px-4 py-2 text-xs",
-    md: "px-6 py-3 text-sm sm:text-base",
-    lg: "px-8 py-3.5 text-base sm:text-lg",
+    sm: "min-h-10 px-4 py-2 text-xs tracking-wide",
+    md: "min-h-11 sm:min-h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base tracking-wide",
+    lg: "min-h-12 sm:min-h-[3.25rem] px-6 sm:px-8 py-3 sm:py-3.5 text-[15px] sm:text-lg tracking-wide",
   }[size];
 
   const baseClasses =
-    "group relative inline-flex items-center justify-center font-sans font-medium rounded-full transition-all duration-300 ease-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed select-none overflow-hidden";
+    "group relative inline-flex items-center justify-center font-sans font-semibold rounded-full transition-all duration-300 ease-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed select-none overflow-hidden touch-manipulation";
 
   let variantClasses = "";
   if (variant === "primary") {
     variantClasses =
-      "bg-gradient-to-r from-[#702442] to-[#862F52] text-[#F8EDF2] border border-[#C66B91]/30 shadow-[0_10px_25px_rgba(112,36,66,0.35),inset_0_1px_0_rgba(255,255,255,0.2)] hover:from-[#7C2B4B] hover:to-[#96375E] hover:shadow-[0_14px_35px_rgba(198,107,145,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]";
+      "bg-primary text-[#1a1408] border border-primary-hover/40 shadow-[0_12px_32px_rgba(230,179,90,0.28)] hover:bg-primary-hover hover:shadow-[0_16px_40px_rgba(230,179,90,0.4)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]";
   } else if (variant === "glass") {
     variantClasses =
-      "bg-white/[0.04] backdrop-blur-md text-[#F8EDF2] border border-white/10 hover:border-[#C66B91]/50 hover:bg-[#C66B91]/10 hover:text-[#C66B91] hover:shadow-[0_10px_25px_rgba(0,0,0,0.3)] active:scale-[0.98]";
+      "bg-white/[0.05] backdrop-blur-md text-foreground border border-white/12 hover:border-primary/45 hover:bg-primary/10 hover:text-primary active:scale-[0.98]";
   } else {
-    // ghost
     variantClasses =
-      "bg-transparent text-[#C66B91] border border-[#C66B91]/50 hover:bg-[#C66B91]/10 hover:border-[#C66B91] hover:shadow-[0_0_20px_rgba(198,107,145,0.2)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]";
+      "bg-transparent text-primary border border-primary/40 hover:bg-primary/10 hover:border-primary hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]";
   }
+
+  const classes = `${baseClasses} ${sizeClasses} ${variantClasses} ${className}`;
 
   if (href) {
     return (
-      <a
-        href={href}
-        className={`${baseClasses} ${sizeClasses} ${variantClasses} ${className}`}
-      >
+      <Link href={href} className={classes}>
         {children}
-      </a>
+      </Link>
     );
   }
 
   return (
-    <button
-      type={props.type || "button"}
-      className={`${baseClasses} ${sizeClasses} ${variantClasses} ${className}`}
-      {...props}
-    >
+    <button type={props.type || "button"} className={classes} {...props}>
       {children}
     </button>
   );

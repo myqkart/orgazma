@@ -1,96 +1,68 @@
-"use client";
-
 import React from "react";
+import Link from "next/link";
 import { Pill } from "@/components/ui/Pill";
 import { SafeImage } from "@/components/ui/ImageFallback";
+import { SparkleOrnament } from "@/components/decor/Ornaments";
 import type { StoryWithSlug } from "@/types/story";
 
 interface StoryCardProps {
   story: StoryWithSlug;
-  onOpen?: (slug: string) => void;
   priority?: boolean;
 }
 
-export function StoryCard({ story, onOpen, priority = false }: StoryCardProps) {
-  const handleClick = () => {
-    if (onOpen) {
-      onOpen(story.slug);
-    }
-  };
-
+export function StoryCard({ story, priority = false }: StoryCardProps) {
   return (
-    <article
-      className="group relative flex flex-col rounded-[24px] bg-gradient-to-b from-[#1C101A] to-[#291626]/80 border border-white/[0.07] overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.45)] transition-all duration-400 ease-out hover:-translate-y-2 hover:border-[#C66B91]/40 hover:shadow-[0_30px_60px_rgba(0,0,0,0.65),0_0_30px_rgba(198,107,145,0.2)] text-left cursor-pointer focus-within:ring-2 focus-within:ring-[#C66B91] focus-within:ring-offset-2 focus-within:ring-offset-[#0E080D]"
-      onClick={handleClick}
-      title="Open it slowly."
-    >
-      <button
-        type="button"
-        onClick={handleClick}
-        aria-haspopup="dialog"
-        aria-label={`Read story: ${story.title}. Open it slowly.`}
-        className="absolute inset-0 w-full h-full z-10 opacity-0 cursor-pointer"
-      >
-        Read story: {story.title}
-      </button>
+    <article className="group relative flex flex-col overflow-hidden text-left rounded-[24px] sm:rounded-[32px] border border-white/[0.08] shadow-[0_16px_40px_rgba(0,0,0,0.35)] sm:shadow-[0_20px_50px_rgba(0,0,0,0.4)] transition-all duration-500 active:scale-[0.99] sm:hover:-translate-y-1.5 sm:hover:border-accent/35 sm:hover:shadow-[0_28px_60px_rgba(0,0,0,0.55),0_0_40px_rgba(201,30,74,0.18)]">
+      <Link
+        href={`/stories/${story.slug}`}
+        className="absolute inset-0 z-10 rounded-[24px] sm:rounded-[32px] touch-manipulation"
+        aria-label={`Open ${story.title} — sink into it`}
+      />
 
-      {/* 3:4 Aspect Ratio Image Header */}
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#1C101A]">
+      <div className="relative aspect-[4/5] sm:aspect-[3/4] w-full overflow-hidden rounded-[24px] sm:rounded-[32px] bg-surface">
         <SafeImage
           src={story.imageUrl}
-          alt={story.title}
+          alt=""
           fill
           priority={priority}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
-          className="object-cover object-center saturate-[0.88] brightness-[0.92] transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+          className="object-cover object-center saturate-[0.92] brightness-[0.88] transition-transform duration-700 ease-out group-hover:scale-[1.07]"
         />
-        {/* Soft deep gradient mask */}
         <div
-          className="absolute inset-0 bg-gradient-to-t from-[#1C101A] via-[#1C101A]/30 to-black/20 pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent pointer-events-none"
           aria-hidden="true"
         />
+        <SparkleOrnament className="absolute top-4 right-4 sm:top-5 sm:right-5 w-3.5 h-3.5 text-accent/70 opacity-0 group-hover:opacity-100 transition-opacity animate-sparkle z-20 pointer-events-none" />
 
-        {/* Floating frosted badges */}
-        <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-20">
+        <div className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 flex items-center justify-between z-20 pointer-events-none gap-2">
           {story.isFeatured ? (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#702442]/80 backdrop-blur-md border border-[#C66B91]/40 text-[#F8EDF2] text-[10px] font-sans font-semibold tracking-wider uppercase">
-              <span className="w-1 h-1 rounded-full bg-[#C66B91] animate-pulse" />
-              Tonight&apos;s pick
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/90 backdrop-blur-md border border-primary/50 text-[#1a1408] text-[10px] font-sans font-semibold tracking-wider uppercase">
+              Hottest tonight
             </span>
           ) : (
             <span />
           )}
           <Pill variant="glass">{story.readTimeMinutes} min</Pill>
         </div>
-      </div>
 
-      {/* Card Content Area */}
-      <div className="flex flex-col flex-1 p-6 sm:p-7 justify-between space-y-5">
-        <div className="space-y-2.5">
-          <h3 className="font-display text-xl sm:text-[23px] font-medium text-[#F8EDF2] leading-snug group-hover:text-[#C66B91] transition-colors duration-200">
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 z-20 pointer-events-none">
+          <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground leading-snug group-hover:text-accent transition-colors">
             {story.title}
           </h3>
           {story.subtitle && (
-            <p className="font-sans text-xs sm:text-[13px] font-medium tracking-wide text-[#BFA5B1]/90 uppercase">
+            <p className="mt-1 sm:mt-1.5 font-sans text-[11px] sm:text-[12px] font-medium tracking-wide text-accent/90 uppercase line-clamp-1">
               {story.subtitle}
             </p>
           )}
-          <p className="font-reading text-sm sm:text-[15px] text-[#F8EDF2]/80 line-clamp-3 leading-relaxed pt-1">
+          <p className="mt-2 sm:mt-3 font-reading text-sm text-foreground/80 line-clamp-2 leading-relaxed">
             {story.previewText}
           </p>
-        </div>
-
-        {/* Modern interactive link footer */}
-        <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-[#C66B91] font-sans text-xs sm:text-[13px] font-medium tracking-wide">
-          <span className="group-hover:text-[#F8EDF2] transition-colors">Keep reading</span>
-          <div className="w-7 h-7 rounded-full bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#C66B91] group-hover:bg-[#702442] group-hover:text-[#F8EDF2] group-hover:border-[#C66B91]/40 group-hover:scale-110 transition-all duration-300">
-            <span
-              className="inline-block transition-transform duration-300 group-hover:translate-x-0.5"
-              aria-hidden="true"
-            >
-              &rarr;
+          <p className="mt-3 sm:mt-4 font-sans text-xs font-semibold tracking-wide text-accent flex items-center gap-2">
+            Sink into it
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+              →
             </span>
-          </div>
+          </p>
         </div>
       </div>
     </article>
