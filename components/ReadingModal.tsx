@@ -192,12 +192,12 @@ export function ReadingModal({
   const fontSizeClasses = useMemo(() => {
     switch (fontSizeIndex) {
       case 0:
-        return "text-[16px] leading-[1.75]";
+        return "text-[16px] leading-[1.8]";
       case 2:
-        return "text-[21px] leading-[1.85]";
+        return "text-[21px] leading-[1.9]";
       case 1:
       default:
-        return "text-[18px] leading-[1.8]";
+        return "text-[18px] leading-[1.85]";
     }
   }, [fontSizeIndex]);
 
@@ -206,7 +206,7 @@ export function ReadingModal({
   return (
     <div
       key={story.slug}
-      className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-6 lg:p-8 bg-[#0E080D]/88 backdrop-blur-[12px] animate-in fade-in duration-300"
+      className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-6 lg:p-8 bg-black/85 backdrop-blur-xl animate-in fade-in duration-300"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           onClose();
@@ -220,21 +220,21 @@ export function ReadingModal({
         aria-modal="true"
         aria-labelledby="reading-story-title"
         tabIndex={-1}
-        className="relative flex flex-col w-full h-full md:h-[90vh] md:max-w-[720px] bg-[#1C101A] text-[#F8EDF2] md:rounded-[24px] border border-[rgba(198,107,145,0.16)] shadow-[0_25px_60px_rgba(0,0,0,0.6)] overflow-hidden focus:outline-none animate-in zoom-in-95 duration-200"
+        className="relative flex flex-col w-full h-full md:h-[92vh] md:max-w-[760px] bg-[#140D13] text-[#F8EDF2] md:rounded-[32px] border border-white/[0.1] shadow-[0_30px_90px_rgba(0,0,0,0.8)] overflow-hidden focus:outline-none animate-in zoom-in-95 duration-250"
       >
-        {/* Sticky Top Bar */}
-        <header className="sticky top-0 z-30 flex-none bg-[#1C101A]/95 backdrop-blur-md border-b border-[rgba(198,107,145,0.14)]">
-          <div className="flex items-center justify-between px-5 py-3.5 gap-4">
-            {/* Close Button */}
+        {/* Modern Sticky Top Bar */}
+        <header className="sticky top-0 z-30 flex-none bg-[#140D13]/90 backdrop-blur-xl border-b border-white/[0.08]">
+          <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 gap-4">
+            {/* Close Circle Button */}
             <button
               type="button"
               onClick={onClose}
               title="Close"
               aria-label="Close story reader"
-              className="p-2 -ml-1 text-[#F8EDF2] hover:text-[#C66B91] hover:bg-[#C66B91]/10 rounded-full transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[#C66B91]"
+              className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#F8EDF2] hover:text-[#C66B91] hover:bg-white/[0.1] hover:scale-105 transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-[#C66B91]"
             >
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -249,13 +249,13 @@ export function ReadingModal({
             </button>
 
             {/* Truncated Title in Bar */}
-            <span className="font-display text-base sm:text-lg text-[#F8EDF2] truncate font-medium max-w-[240px] sm:max-w-[360px]">
+            <span className="font-display text-base sm:text-lg text-[#F8EDF2] truncate font-medium max-w-[220px] sm:max-w-[380px]">
               {story.title}
             </span>
 
-            {/* Font Size Controls */}
+            {/* Modern Font Size Capsule */}
             <div
-              className="flex items-center gap-1 bg-[#291626]/80 rounded-full p-1 border border-[rgba(198,107,145,0.12)]"
+              className="flex items-center gap-1 bg-white/[0.04] rounded-full p-1 border border-white/[0.08]"
               role="group"
               aria-label="Font size controls"
             >
@@ -269,6 +269,7 @@ export function ReadingModal({
               >
                 A−
               </button>
+              <div className="w-[1px] h-3.5 bg-white/10" />
               <button
                 type="button"
                 onClick={() => changeFontSize(1)}
@@ -282,19 +283,19 @@ export function ReadingModal({
             </div>
           </div>
 
-          {/* Thin Reading Progress Line */}
-          <div className="w-full h-[2px] bg-[#291626] overflow-hidden" aria-hidden="true">
+          {/* Glowing Gradient Reading Progress Bar */}
+          <div className="w-full h-[2px] bg-white/[0.05] overflow-hidden" aria-hidden="true">
             <div
-              className="h-full bg-[#702442] transition-all duration-150 ease-out"
+              className="h-full bg-gradient-to-r from-[#702442] via-[#C66B91] to-[#F8EDF2] transition-all duration-150 ease-out shadow-[0_0_10px_rgba(198,107,145,0.5)]"
               style={{ width: `${scrollProgress}%` }}
             />
           </div>
         </header>
 
-        {/* Resume Reading Toast */}
+        {/* Floating Resume Reading Toast */}
         {showResumeToast && (
           <div
-            className="absolute top-16 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm rounded-[14px] bg-[#291626]/95 backdrop-blur-md border border-[#C66B91]/40 p-4 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-3 animate-in fade-in slide-in-from-top-2 duration-300"
+            className="absolute top-16 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-sm rounded-2xl bg-[#1C101A]/95 backdrop-blur-2xl border border-[#C66B91]/40 p-4 shadow-[0_20px_45px_rgba(0,0,0,0.8)] flex flex-col sm:flex-row items-center justify-between gap-3 animate-in fade-in slide-in-from-top-3 duration-300"
             role="status"
           >
             <span className="font-sans text-xs sm:text-sm text-[#F8EDF2]">
@@ -304,14 +305,14 @@ export function ReadingModal({
               <button
                 type="button"
                 onClick={handleResumeContinue}
-                className="px-3 py-1 rounded-lg bg-[#702442] hover:bg-[#862F52] text-[#F8EDF2] text-xs font-medium transition-colors cursor-pointer"
+                className="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#702442] to-[#862F52] hover:from-[#7C2B4B] hover:to-[#96375E] text-[#F8EDF2] text-xs font-medium transition-all shadow-md cursor-pointer"
               >
                 Continue
               </button>
               <button
                 type="button"
                 onClick={handleResumeFromStart}
-                className="px-2.5 py-1 rounded-lg text-xs text-[#BFA5B1] hover:text-[#F8EDF2] transition-colors cursor-pointer"
+                className="px-3 py-1.5 rounded-full text-xs text-[#BFA5B1] hover:text-[#F8EDF2] transition-colors cursor-pointer"
               >
                 From the start
               </button>
@@ -323,64 +324,70 @@ export function ReadingModal({
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
-          className="flex-1 overflow-y-auto px-6 sm:px-10 md:px-12 py-8 space-y-8 scroll-smooth"
+          className="flex-1 overflow-y-auto px-6 sm:px-12 md:px-16 py-10 space-y-10 scroll-smooth"
         >
           {/* Header Banner */}
-          <div className="space-y-6">
-            <div className="relative aspect-[16/9] w-full rounded-[16px] overflow-hidden bg-[#291626] border border-[rgba(198,107,145,0.14)]">
+          <div className="space-y-7">
+            <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full rounded-[22px] overflow-hidden bg-[#1C101A] border border-white/[0.08] shadow-lg">
               <SafeImage
                 src={story.imageUrl}
                 alt={story.title}
                 fill
                 priority
-                sizes="(max-width: 768px) 100vw, 680px"
+                sizes="(max-width: 768px) 100vw, 760px"
                 className="object-cover object-center saturate-[0.88] brightness-[0.9]"
               />
               <div
-                className="absolute inset-0 bg-gradient-to-t from-[#1C101A] via-transparent to-transparent pointer-events-none"
+                className="absolute inset-0 bg-gradient-to-t from-[#140D13] via-transparent to-transparent pointer-events-none"
                 aria-hidden="true"
               />
             </div>
 
-            <div className="space-y-2 border-b border-[rgba(198,107,145,0.14)] pb-6">
+            <div className="space-y-3 border-b border-white/[0.08] pb-8">
               <div className="flex items-center justify-between pb-2">
-                <Pill>{story.readTimeMinutes} min read</Pill>
+                <Pill variant="glass">{story.readTimeMinutes} min read</Pill>
               </div>
               <h1
                 id="reading-story-title"
-                className="font-display text-2xl sm:text-3xl md:text-[36px] text-[#F8EDF2] font-medium leading-tight"
+                className="font-display text-3xl sm:text-4xl md:text-[42px] text-[#F8EDF2] font-medium leading-[1.2]"
               >
                 {story.title}
               </h1>
               {story.subtitle && (
-                <p className="font-sans text-sm sm:text-base font-medium tracking-wide text-[#BFA5B1]">
+                <p className="font-sans text-xs sm:text-sm uppercase tracking-[0.15em] text-[#C66B91] font-medium">
                   {story.subtitle}
                 </p>
               )}
             </div>
           </div>
 
-          {/* Body Paragraphs Column (max 62ch) */}
-          <div className="max-w-[62ch] mx-auto space-y-6">
+          {/* Body Paragraphs Column (max 62ch) with First-Paragraph Drop Cap */}
+          <div className="max-w-[62ch] mx-auto space-y-7">
             {story.content.map((paragraph, index) => {
               if (paragraph.trim() === "***") {
                 return (
                   <div
                     key={`break-${index}`}
-                    className="flex justify-center items-center gap-2.5 py-6 my-2 text-[#C66B91]"
+                    className="flex justify-center items-center gap-3 py-8 my-2 text-[#C66B91]"
                     aria-hidden="true"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]/60" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]/60" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]/50" />
+                    <span className="w-2 h-2 rounded-full bg-[#C66B91] shadow-[0_0_10px_rgba(198,107,145,0.6)]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]/50" />
                   </div>
                 );
               }
 
+              const isFirst = index === 0;
+
               return (
                 <p
                   key={`p-${index}`}
-                  className={`font-reading text-[#F8EDF2] ${fontSizeClasses}`}
+                  className={`font-reading text-[#F8EDF2]/90 ${fontSizeClasses} ${
+                    isFirst
+                      ? "first-letter:float-left first-letter:text-5xl first-letter:pr-3.5 first-letter:font-display first-letter:font-medium first-letter:text-[#C66B91] first-letter:leading-none"
+                      : ""
+                  }`}
                 >
                   {paragraph}
                 </p>
@@ -388,9 +395,9 @@ export function ReadingModal({
             })}
           </div>
 
-          {/* Ending Block */}
-          <div className="pt-16 pb-12 text-center border-t border-[rgba(198,107,145,0.14)] space-y-8 mt-12">
-            <p className="font-reading italic text-xl sm:text-2xl text-[#C66B91] max-w-md mx-auto leading-relaxed">
+          {/* Modern Ending Card */}
+          <div className="pt-14 pb-10 text-center border-t border-white/[0.08] space-y-7 mt-12 rounded-[24px] bg-white/[0.02] p-8 border border-white/[0.05]">
+            <p className="font-reading italic text-2xl text-[#C66B91] max-w-md mx-auto leading-relaxed">
               {endingLine}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -409,7 +416,7 @@ export function ReadingModal({
                 Another story
               </Button>
               <Button
-                variant="ghost"
+                variant="glass"
                 onClick={() => {
                   onClose();
                   if (typeof window !== "undefined") {

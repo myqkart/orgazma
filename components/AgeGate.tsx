@@ -75,22 +75,47 @@ export function AgeGate({ children }: AgeGateProps) {
   if (!isAgeVerified) {
     return (
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-[#0E080D] overflow-y-auto"
+        className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-[#0E080D]/95 backdrop-blur-2xl overflow-y-auto"
         role="dialog"
         aria-modal="true"
         aria-labelledby="agegate-headline"
       >
-        {/* Soft Accent candlelight glow behind card */}
+        {/* Soft Accent ambient glow */}
         <div
-          className="absolute w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-[#C66B91]/10 blur-[100px] pointer-events-none"
+          className="absolute w-[450px] h-[450px] rounded-full bg-[#702442]/25 blur-[140px] pointer-events-none"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute w-[350px] h-[350px] rounded-full bg-[#C66B91]/15 blur-[120px] pointer-events-none"
           aria-hidden="true"
         />
 
-        <div className="relative w-full max-w-[480px] rounded-[24px] bg-[#1C101A] border border-[rgba(198,107,145,0.16)] p-8 sm:p-10 shadow-[0_24px_60px_rgba(0,0,0,0.6)] text-center space-y-6 animate-in fade-in zoom-in-95 duration-400">
+        <div className="relative w-full max-w-[500px] rounded-[32px] bg-[#1A1018]/90 backdrop-blur-2xl border border-white/[0.1] p-8 sm:p-11 shadow-[0_30px_90px_rgba(0,0,0,0.8)] text-center space-y-7 animate-in fade-in zoom-in-95 duration-400">
+          {/* Modern Seal Icon */}
+          <div className="flex justify-center">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#702442] to-[#C66B91] p-[1px] shadow-[0_0_25px_rgba(198,107,145,0.4)]">
+              <div className="w-full h-full rounded-full bg-[#0E080D] flex items-center justify-center text-[#C66B91]">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]" />
-            <span className="font-sans text-xs uppercase tracking-[0.15em] text-[#C66B91] font-medium">
+            <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-[#C66B91] font-semibold">
               Adults only
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]" />
@@ -99,27 +124,29 @@ export function AgeGate({ children }: AgeGateProps) {
           {/* Headline */}
           <h2
             id="agegate-headline"
-            className="font-display text-3xl sm:text-4xl text-[#F8EDF2] font-medium leading-tight"
+            className="font-display text-3xl sm:text-4xl text-[#F8EDF2] font-medium leading-[1.2]"
           >
             Close the door behind you.
           </h2>
 
           {/* Subtext */}
-          <p className="font-reading text-[#F8EDF2]/90 text-base sm:text-[17px] leading-relaxed">
+          <p className="font-reading text-[#F8EDF2]/85 text-base sm:text-[17px] leading-relaxed">
             What&apos;s inside is written for grown women who know what they want. You must be 18 or older to enter.
           </p>
 
-          {/* Buttons */}
+          {/* Modern Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <Button
               variant="primary"
+              size="md"
               onClick={handleAccept}
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto shadow-[0_12px_28px_rgba(112,36,66,0.4)]"
             >
               I&apos;m 18+. Let me in.
             </Button>
             <Button
-              variant="ghost"
+              variant="glass"
+              size="md"
               onClick={handleDecline}
               className="w-full sm:w-auto"
             >
@@ -128,7 +155,7 @@ export function AgeGate({ children }: AgeGateProps) {
           </div>
 
           {/* Fine print */}
-          <p className="font-sans text-xs text-[#BFA5B1]/60 leading-relaxed pt-2 border-t border-[rgba(198,107,145,0.1)]">
+          <p className="font-sans text-xs text-[#BFA5B1]/60 leading-relaxed pt-2 border-t border-white/[0.08]">
             By entering you confirm you&apos;re an adult and that you&apos;re choosing to read adult fiction.
           </p>
         </div>

@@ -11,11 +11,11 @@ export function LoadingState() {
       aria-live="polite"
     >
       <div className="flex gap-2 mb-4" aria-hidden="true">
-        <span className="w-2.5 h-2.5 rounded-full bg-[#C66B91] animate-bounce [animation-delay:-0.3s]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#C66B91] animate-bounce [animation-delay:-0.15s]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#C66B91] animate-bounce" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#C66B91] animate-bounce [animation-delay:-0.3s] shadow-[0_0_10px_rgba(198,107,145,0.6)]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#C66B91] animate-bounce [animation-delay:-0.15s] shadow-[0_0_10px_rgba(198,107,145,0.6)]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#C66B91] animate-bounce shadow-[0_0_10px_rgba(198,107,145,0.6)]" />
       </div>
-      <p className="font-display italic text-lg md:text-xl text-[#BFA5B1] tracking-wide">
+      <p className="font-reading italic text-lg md:text-xl text-[#BFA5B1] tracking-wide">
         Setting the mood…
       </p>
     </div>
@@ -35,7 +35,7 @@ export function EmptyState({
 }: EmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-[340px] p-8 text-center max-w-md mx-auto">
-      <div className="w-12 h-12 rounded-full bg-[#1C101A] border border-[rgba(198,107,145,0.18)] flex items-center justify-center mb-6 text-[#C66B91]">
+      <div className="w-14 h-14 rounded-full bg-white/[0.03] border border-white/[0.1] flex items-center justify-center mb-6 text-[#C66B91] shadow-[0_0_20px_rgba(198,107,145,0.15)]">
         <svg
           className="w-6 h-6"
           fill="none"
@@ -55,7 +55,7 @@ export function EmptyState({
         {message}
       </p>
       {actionText && (
-        <Button variant="ghost" onClick={onAction}>
+        <Button variant="glass" onClick={onAction}>
           {actionText}
         </Button>
       )}
@@ -73,7 +73,7 @@ export function ErrorState({ onReload }: ErrorStateProps) {
       className="flex flex-col items-center justify-center min-h-[340px] p-8 text-center max-w-md mx-auto"
       role="alert"
     >
-      <div className="w-12 h-12 rounded-full bg-[#1C101A] border border-[rgba(198,107,145,0.25)] flex items-center justify-center mb-6 text-[#C66B91] shadow-[0_0_20px_rgba(198,107,145,0.15)]">
+      <div className="w-14 h-14 rounded-full bg-white/[0.03] border border-[#C66B91]/30 flex items-center justify-center mb-6 text-[#C66B91] shadow-[0_0_25px_rgba(198,107,145,0.25)]">
         <svg
           className="w-6 h-6"
           fill="none"

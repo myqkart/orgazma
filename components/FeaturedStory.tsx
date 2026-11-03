@@ -15,9 +15,10 @@ export function FeaturedStory({ story, onOpen }: FeaturedStoryProps) {
 
   return (
     <section id="pick" className="scroll-mt-24 relative">
-      <Container clean className="pt-8 pb-16 md:py-20">
-        <div className="mb-6 space-y-1">
-          <p className="font-display italic text-[#BFA5B1] text-sm sm:text-base">
+      <Container clean className="pt-8 pb-16 md:py-24">
+        <div className="mb-6 flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]" />
+          <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#C66B91] font-semibold">
             Chosen for the mood you&apos;re probably in.
           </p>
         </div>
