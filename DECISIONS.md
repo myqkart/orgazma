@@ -29,3 +29,6 @@ Transitions are built with standard Tailwind/CSS transitions and keyframes, with
 
 ## Decision 5: ReadingModal React 19 State & Slug Hash Synchronization
 In React 19 / ESLint 9, calling `setState` synchronously within `useEffect` is prohibited. To eliminate cascading renders, `ReadingModal` initializes user font size preferences using a safe lazy initializer, keys the modal by `story.slug` for auto-resetting scroll state, and derives closing lines deterministically from the story slug. URL hash state (`#story=slug`) is bidirectionally synced with browser history (`pushState`, `popstate`, `hashchange`) for full Back/Forward button and deep-link support.
+
+## Decision 6: AgeGate Hydration-Safe External Store & Persistence
+`AgeGate` uses React's `useSyncExternalStore` and deferred mounting to synchronize with `localStorage.getItem("ageOk")` without any hydration flash or SSR mismatches. Reading position `pos:{slug}` and font size preferences are stored and recalled safely on client interactions, showing a polite "Pick up where you left off?" toast upon revisiting an in-progress story.

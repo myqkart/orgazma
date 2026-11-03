@@ -31,7 +31,7 @@ export function ReadingModal({
 
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Lazy initializer reads preference cleanly without cascading effect setState
+  // Lazy initializer reads font size preference cleanly without cascading effect setState
   const [fontSizeIndex, setFontSizeIndex] = useState<number>(() => {
     if (typeof window === "undefined") return 1;
     try {
@@ -45,6 +45,23 @@ export function ReadingModal({
     }
     return 1;
   });
+
+  // Check saved scroll position for resume toast
+  const savedPosition = useMemo(() => {
+    if (typeof window === "undefined" || !story) return null;
+    try {
+      const pos = localStorage.getItem(`pos:${story.slug}`);
+      if (pos) {
+        const parsed = parseFloat(pos);
+        if (parsed > 120) return parsed;
+      }
+    } catch {
+      // Ignore
+    }
+    return null;
+  }, [story]);
+
+  const [showResumeToast, setShowResumeToast] = useState(() => savedPosition !== null);
 
   // Deterministic ending line derived from story slug
   const endingLine = useMemo(() => {
@@ -126,10 +143,10 @@ export function ReadingModal({
     };
   }, [story, onClose]);
 
-  // Track scroll progress inside modal
+  // Track scroll progress and save reading position
   const handleScroll = () => {
     const el = scrollContainerRef.current;
-    if (!el) return;
+    if (!el || !story) return;
     const total = el.scrollHeight - el.clientHeight;
     if (total <= 0) {
       setScrollProgress(0);
@@ -137,6 +154,39 @@ export function ReadingModal({
     }
     const current = (el.scrollTop / total) * 100;
     setScrollProgress(Math.min(100, Math.max(0, current)));
+
+    // Save reading position per slug
+    try {
+      if (el.scrollTop > 80 && current < 95) {
+        localStorage.setItem(`pos:${story.slug}`, String(Math.round(el.scrollTop)));
+      } else if (current >= 95) {
+        // finished story, clear saved position
+        localStorage.removeItem(`pos:${story.slug}`);
+      }
+    } catch {
+      // Ignore storage errors
+    }
+  };
+
+  const handleResumeContinue = () => {
+    if (savedPosition && scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: savedPosition,
+        behavior: "smooth",
+      });
+    }
+    setShowResumeToast(false);
+  };
+
+  const handleResumeFromStart = () => {
+    if (story) {
+      try {
+        localStorage.removeItem(`pos:${story.slug}`);
+      } catch {
+        // Ignore
+      }
+    }
+    setShowResumeToast(false);
   };
 
   const fontSizeClasses = useMemo(() => {
@@ -240,6 +290,34 @@ export function ReadingModal({
             />
           </div>
         </header>
+
+        {/* Resume Reading Toast */}
+        {showResumeToast && (
+          <div
+            className="absolute top-16 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm rounded-[14px] bg-[#22334A]/95 backdrop-blur-md border border-[#8DC2D0]/40 p-4 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-3 animate-in fade-in slide-in-from-top-2 duration-300"
+            role="status"
+          >
+            <span className="font-sans text-xs sm:text-sm text-[#E6EEF0]">
+              Pick up where you left off?
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleResumeContinue}
+                className="px-3 py-1 rounded-lg bg-[#4C87A5] hover:bg-[#5B97B5] text-[#0C1420] text-xs font-medium transition-colors cursor-pointer"
+              >
+                Continue
+              </button>
+              <button
+                type="button"
+                onClick={handleResumeFromStart}
+                className="px-2.5 py-1 rounded-lg text-xs text-[#A0B0C0] hover:text-[#E6EEF0] transition-colors cursor-pointer"
+              >
+                From the start
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Scrollable Reading Content */}
         <div
