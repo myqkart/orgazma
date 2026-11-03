@@ -1,7 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
-import { FeaturedStory } from "@/components/FeaturedStory";
-import { StoriesGrid } from "@/components/StoriesGrid";
+import { StoryReader } from "@/components/StoryReader";
 import { Footer } from "@/components/Footer";
 import { getAllStories, getFeatured } from "@/lib/stories";
 
@@ -15,8 +14,7 @@ export default function Page() {
       <Navigation hasFeatured={hasFeatured} />
       <main className="flex-1">
         <Hero hasFeatured={hasFeatured} />
-        {featured && <FeaturedStory story={featured} />}
-        <StoriesGrid stories={stories} />
+        <StoryReader stories={stories} featured={featured} />
       </main>
       <Footer />
     </div>

@@ -26,3 +26,6 @@ In Next.js 16 with cache components / static generation, evaluating `new Date()`
 
 ## Decision 4: Smooth Animation & Reduced Motion
 Transitions are built with standard Tailwind/CSS transitions and keyframes, with `@media (prefers-reduced-motion: reduce)` disabling translate/scale while keeping gentle opacity transitions. This avoids unnecessary client bundle bloat and provides instant, glitch-free rendering.
+
+## Decision 5: ReadingModal React 19 State & Slug Hash Synchronization
+In React 19 / ESLint 9, calling `setState` synchronously within `useEffect` is prohibited. To eliminate cascading renders, `ReadingModal` initializes user font size preferences using a safe lazy initializer, keys the modal by `story.slug` for auto-resetting scroll state, and derives closing lines deterministically from the story slug. URL hash state (`#story=slug`) is bidirectionally synced with browser history (`pushState`, `popstate`, `hashchange`) for full Back/Forward button and deep-link support.
