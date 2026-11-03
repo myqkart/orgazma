@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0c1420;
-  --color-surface: #172235;
-  --color-card: #22334a;
-  --color-primary: #4c87a5;
-  --color-primary-hover: #5b97b5;
-  --color-accent: #8dc2d0;
-  --color-text-main: #e6eef0;
-  --color-foreground: #e6eef0;
-  --color-muted: #a0b0c0;
-  --color-border-subtle: rgba(141, 194, 208, 0.14);
-  --color-glow: rgba(141, 194, 208, 0.25);
-  --color-overlay: rgba(12, 20, 32, 0.88);
+  --color-background: #0e080d;
+  --color-surface: #1c101a;
+  --color-card: #291626;
+  --color-primary: #702442;
+  --color-primary-hover: #862f52;
+  --color-accent: #c66b91;
+  --color-text-main: #f8edf2;
+  --color-foreground: #f8edf2;
+  --color-muted: #bfa5b1;
+  --color-border-subtle: rgba(198, 107, 145, 0.16);
+  --color-glow: rgba(198, 107, 145, 0.25);
+  --color-overlay: rgba(14, 8, 13, 0.88);
 
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-reading: var(--font-literata), Georgia, serif;
@@ -24,30 +24,30 @@
 }
 
 :root {
-  --background: #0c1420;
-  --foreground: #e6eef0;
-  --surface: #172235;
-  --card: #22334a;
-  --primary: #4c87a5;
-  --primary-hover: #5b97b5;
-  --accent: #8dc2d0;
-  --muted: #a0b0c0;
-  --border-subtle: rgba(141, 194, 208, 0.14);
-  --glow: rgba(141, 194, 208, 0.25);
-  --overlay: rgba(12, 20, 32, 0.88);
+  --background: #0e080d;
+  --foreground: #f8edf2;
+  --surface: #1c101a;
+  --card: #291626;
+  --primary: #702442;
+  --primary-hover: #862f52;
+  --accent: #c66b91;
+  --muted: #bfa5b1;
+  --border-subtle: rgba(198, 107, 145, 0.16);
+  --glow: rgba(198, 107, 145, 0.25);
+  --overlay: rgba(14, 8, 13, 0.88);
 }
 
 html {
-  background-color: #0c1420;
-  color: #e6eef0;
+  background-color: #0e080d;
+  color: #f8edf2;
   font-family: var(--font-inter), system-ui, sans-serif;
   scroll-behavior: smooth;
   color-scheme: dark;
 }
 
 body {
-  background-color: #0c1420;
-  color: #e6eef0;
+  background-color: #0e080d;
+  color: #f8edf2;
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
@@ -73,11 +73,11 @@ body {
 
 /* Candlelight / atmospheric radial glow */
 .candlelight-glow {
-  background: radial-gradient(circle at 50% 40%, rgba(141, 194, 208, 0.1) 0%, rgba(12, 20, 32, 0) 70%);
+  background: radial-gradient(circle at 50% 40%, rgba(198, 107, 145, 0.12) 0%, rgba(14, 8, 13, 0) 70%);
 }
 
 .candlelight-glow-pulse {
-  background: radial-gradient(circle at 50% 50%, rgba(141, 194, 208, 0.11) 0%, rgba(12, 20, 32, 0) 75%);
+  background: radial-gradient(circle at 50% 50%, rgba(198, 107, 145, 0.13) 0%, rgba(14, 8, 13, 0) 75%);
   animation: pulse-glow 8s ease-in-out infinite alternate;
 }
 

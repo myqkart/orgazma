@@ -27,7 +27,7 @@ export function Navigation({ hasFeatured = true }: NavigationProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-[#172235]/90 backdrop-blur-md border-b border-[rgba(141,194,208,0.14)] py-4 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+          ? "bg-[#1C101A]/90 backdrop-blur-md border-b border-[rgba(198,107,145,0.14)] py-4 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
           : "bg-transparent py-6"
       }`}
     >
@@ -35,14 +35,14 @@ export function Navigation({ hasFeatured = true }: NavigationProps) {
         {/* Wordmark */}
         <a
           href="#"
-          className="group flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC2D0] rounded-sm"
+          className="group flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C66B91] rounded-sm"
           onClick={() => {
             if (typeof window !== "undefined") {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
         >
-          <span className="font-display text-2xl sm:text-3xl font-medium tracking-tight text-[#E6EEF0] group-hover:text-[#8DC2D0] transition-colors duration-200">
+          <span className="font-display text-2xl sm:text-3xl font-medium tracking-tight text-[#F8EDF2] group-hover:text-[#C66B91] transition-colors duration-200">
             Velvet Hours
           </span>
         </a>
@@ -55,29 +55,29 @@ export function Navigation({ hasFeatured = true }: NavigationProps) {
           {hasFeatured && (
             <a
               href="#pick"
-              className="font-sans text-sm font-medium tracking-[0.06em] text-[#E6EEF0]/80 hover:text-[#8DC2D0] transition-colors duration-200"
+              className="font-sans text-sm font-medium tracking-[0.06em] text-[#F8EDF2]/80 hover:text-[#C66B91] transition-colors duration-200"
             >
               Tonight&apos;s Pick
             </a>
           )}
           <a
             href="#collection"
-            className="font-sans text-sm font-medium tracking-[0.06em] text-[#E6EEF0]/80 hover:text-[#8DC2D0] transition-colors duration-200"
+            className="font-sans text-sm font-medium tracking-[0.06em] text-[#F8EDF2]/80 hover:text-[#C66B91] transition-colors duration-200"
           >
             The Collection
           </a>
-          <Pill className="text-[11px] py-0.5 px-2.5 border-[#8DC2D0]/30">18+</Pill>
+          <Pill className="text-[11px] py-0.5 px-2.5 border-[#C66B91]/30">18+</Pill>
         </nav>
 
         {/* Mobile Hamburger Button */}
         <div className="flex md:hidden items-center gap-3">
-          <Pill className="text-[10px] py-0.5 px-2 border-[#8DC2D0]/30">18+</Pill>
+          <Pill className="text-[10px] py-0.5 px-2 border-[#C66B91]/30">18+</Pill>
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle navigation menu"
-            className="p-2 text-[#E6EEF0] hover:text-[#8DC2D0] focus-visible:outline-2 focus-visible:outline-[#8DC2D0] rounded-lg cursor-pointer"
+            className="p-2 text-[#F8EDF2] hover:text-[#C66B91] focus-visible:outline-2 focus-visible:outline-[#C66B91] rounded-lg cursor-pointer"
           >
             {mobileMenuOpen ? (
               <svg
@@ -116,13 +116,13 @@ export function Navigation({ hasFeatured = true }: NavigationProps) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#172235]/95 backdrop-blur-xl border-b border-[rgba(141,194,208,0.14)] px-6 py-6 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="md:hidden bg-[#1C101A]/95 backdrop-blur-xl border-b border-[rgba(198,107,145,0.14)] px-6 py-6 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
           <nav className="flex flex-col gap-5 text-center" aria-label="Mobile Navigation">
             {hasFeatured && (
               <a
                 href="#pick"
                 onClick={closeMenu}
-                className="font-sans text-base text-[#E6EEF0] hover:text-[#8DC2D0] py-2 transition-colors duration-200"
+                className="font-sans text-base text-[#F8EDF2] hover:text-[#C66B91] py-2 transition-colors duration-200"
               >
                 Tonight&apos;s Pick
               </a>
@@ -130,7 +130,7 @@ export function Navigation({ hasFeatured = true }: NavigationProps) {
             <a
               href="#collection"
               onClick={closeMenu}
-              className="font-sans text-base text-[#E6EEF0] hover:text-[#8DC2D0] py-2 transition-colors duration-200"
+              className="font-sans text-base text-[#F8EDF2] hover:text-[#C66B91] py-2 transition-colors duration-200"
             >
               The Collection
             </a>

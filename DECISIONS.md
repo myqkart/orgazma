@@ -4,18 +4,19 @@
 The user prompt notes "Everything must be built inside the existing Next.js project `my-app`". The current repository root `/Users/macbookair/.vsc/.srj/orgazma` already contains the Next.js 16 app with `package.json`, `app/`, `next.config.ts`, etc., with path alias `@/*` mapped to `./*`. Therefore, all directories (`app/`, `components/`, `lib/`, `data/`, `types/`) are placed directly at the project root rather than creating a nested folder or using `src/`.
 
 ## Decision 2: Tailwind v4 Theme Tokens
-Tailwind v4 is in use with `@import "tailwindcss";` and `@theme`. We define color tokens:
-- `--color-bg-base: #0C1420`
-- `--color-surface: #172235`
-- `--color-card: #22334A`
-- `--color-primary: #4C87A5`
-- `--color-primary-hover: #5B97B5`
-- `--color-accent: #8DC2D0`
-- `--color-text-main: #E6EEF0`
-- `--color-muted: #A0B0C0`
-- `--color-border-subtle: rgba(141, 194, 208, 0.14)`
-- `--color-glow: rgba(141, 194, 208, 0.25)`
-- `--color-overlay: rgba(12, 20, 32, 0.88)`
+Tailwind v4 is in use with `@import "tailwindcss";` and `@theme`. Updated to the requested warm plum/wine aesthetic:
+- `--color-background: #0E080D` (deep plum-black base)
+- `--color-surface: #1C101A` (dark berry surface)
+- `--color-card: #291626` (elevated wine card)
+- `--color-primary: #702442` (rich burgundy primary)
+- `--color-primary-hover: #862F52` (brightened wine hover)
+- `--color-accent: #C66B91` (rose / mauve highlight)
+- `--color-text-main: #F8EDF2` (soft pinkish-white main text)
+- `--color-foreground: #F8EDF2`
+- `--color-muted: #BFA5B1` (muted rose-gray captions & metadata)
+- `--color-border-subtle: rgba(198, 107, 145, 0.16)`
+- `--color-glow: rgba(198, 107, 145, 0.25)`
+- `--color-overlay: rgba(14, 8, 13, 0.88)`
 And font families:
 - `--font-display: var(--font-cormorant), serif`
 - `--font-reading: var(--font-literata), Georgia, serif`

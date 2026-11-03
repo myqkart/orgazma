@@ -16,12 +16,12 @@ export function Hero({ hasFeatured = true }: HeroProps) {
 
       <div className="max-w-4xl mx-auto flex flex-col items-center space-y-8 pt-16 pb-24">
         {/* Headline */}
-        <h1 className="font-display text-4xl sm:text-6xl md:text-[68px] font-medium tracking-tight text-[#E6EEF0] leading-[1.12] drop-shadow-sm max-w-3xl animate-in fade-in slide-in-from-bottom-3 duration-700">
+        <h1 className="font-display text-4xl sm:text-6xl md:text-[68px] font-medium tracking-tight text-[#F8EDF2] leading-[1.12] drop-shadow-sm max-w-3xl animate-in fade-in slide-in-from-bottom-3 duration-700">
           Read what you&apos;d never say out loud.
         </h1>
 
         {/* Tagline */}
-        <p className="font-display italic text-lg sm:text-2xl text-[#A0B0C0] max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+        <p className="font-display italic text-lg sm:text-2xl text-[#BFA5B1] max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
           Slow burns, hungry mornings and the kind of heat that follows you into the day.
         </p>
 
@@ -45,17 +45,17 @@ export function Hero({ hasFeatured = true }: HeroProps) {
       </div>
 
       {/* Scroll cue */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#A0B0C0]/70 hover:text-[#8DC2D0] transition-colors duration-200">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#BFA5B1]/70 hover:text-[#C66B91] transition-colors duration-200">
         <a
           href={hasFeatured ? "#pick" : "#collection"}
-          className="group flex flex-col items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC2D0] rounded-sm py-1"
+          className="group flex flex-col items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C66B91] rounded-sm py-1"
           aria-label="Scroll lower into stories"
         >
           <span className="font-display italic text-sm tracking-wide">
             Go on. Lower.
           </span>
           <svg
-            className="w-4 h-4 text-[#8DC2D0] animate-bounce"
+            className="w-4 h-4 text-[#C66B91] animate-bounce"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

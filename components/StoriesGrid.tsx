@@ -29,21 +29,21 @@ export function StoriesGrid({ stories, onOpen }: StoriesGridProps) {
     <section id="collection" className="scroll-mt-24 relative">
       <Container clean className="py-16 md:py-24">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-[rgba(141,194,208,0.14)]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-[rgba(198,107,145,0.14)]">
           <div className="space-y-2">
-            <h2 className="font-display text-3xl sm:text-4xl text-[#E6EEF0] tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl text-[#F8EDF2] tracking-tight">
               The Collection
             </h2>
-            <p className="font-display italic text-[#A0B0C0] text-base sm:text-lg">
+            <p className="font-display italic text-[#BFA5B1] text-base sm:text-lg">
               Pick the mood you&apos;re in. Every story is a door.
             </p>
           </div>
 
           {/* Search Input */}
           <div className="relative w-full md:w-80">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#A0B0C0]">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#BFA5B1]">
               <svg
-                className="w-4 h-4 text-[#8DC2D0]/70"
+                className="w-4 h-4 text-[#C66B91]/70"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -63,14 +63,14 @@ export function StoriesGrid({ stories, onOpen }: StoriesGridProps) {
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search for a mood, a name, a morning…"
               aria-label="Search stories by mood, name, or morning"
-              className="w-full pl-10 pr-9 py-2.5 rounded-[14px] bg-[#172235] border border-[rgba(141,194,208,0.18)] text-sm text-[#E6EEF0] placeholder-[#A0B0C0]/60 focus:border-[#8DC2D0] focus:ring-1 focus:ring-[#8DC2D0] focus:outline-none transition-all duration-200"
+              className="w-full pl-10 pr-9 py-2.5 rounded-[14px] bg-[#1C101A] border border-[rgba(198,107,145,0.18)] text-sm text-[#F8EDF2] placeholder-[#BFA5B1]/60 focus:border-[#C66B91] focus:ring-1 focus:ring-[#C66B91] focus:outline-none transition-all duration-200"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery("")}
                 aria-label="Clear search"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#A0B0C0] hover:text-[#8DC2D0] cursor-pointer"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#BFA5B1] hover:text-[#C66B91] cursor-pointer"
               >
                 <svg
                   className="w-4 h-4"
@@ -109,16 +109,16 @@ export function StoriesGrid({ stories, onOpen }: StoriesGridProps) {
           </div>
         ) : (
           <div
-            className="flex flex-col items-center justify-center py-20 px-6 text-center rounded-[20px] bg-[#172235]/50 border border-[rgba(141,194,208,0.12)] max-w-lg mx-auto"
+            className="flex flex-col items-center justify-center py-20 px-6 text-center rounded-[20px] bg-[#1C101A]/50 border border-[rgba(198,107,145,0.12)] max-w-lg mx-auto"
             role="status"
           >
-            <p className="font-display italic text-xl text-[#E6EEF0] mb-4">
+            <p className="font-display italic text-xl text-[#F8EDF2] mb-4">
               Nothing like that yet. Try another mood.
             </p>
             <button
               type="button"
               onClick={() => setSearchQuery("")}
-              className="text-xs uppercase tracking-[0.12em] font-sans text-[#8DC2D0] hover:underline cursor-pointer"
+              className="text-xs uppercase tracking-[0.12em] font-sans text-[#C66B91] hover:underline cursor-pointer"
             >
               Clear search filter
             </button>

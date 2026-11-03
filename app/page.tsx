@@ -12,7 +12,7 @@ export default function Page() {
 
   return (
     <AgeGate>
-      <div className="min-h-screen bg-[#0C1420] text-[#E6EEF0] flex flex-col justify-between selection:bg-[#4C87A5] selection:text-[#0C1420]">
+      <div className="min-h-screen bg-[#0E080D] text-[#F8EDF2] flex flex-col justify-between selection:bg-[#702442] selection:text-[#F8EDF2]">
         <Navigation hasFeatured={hasFeatured} />
         <main className="flex-1">
           <Hero hasFeatured={hasFeatured} />

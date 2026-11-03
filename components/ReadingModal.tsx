@@ -206,7 +206,7 @@ export function ReadingModal({
   return (
     <div
       key={story.slug}
-      className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-6 lg:p-8 bg-[#0C1420]/88 backdrop-blur-[12px] animate-in fade-in duration-300"
+      className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-6 lg:p-8 bg-[#0E080D]/88 backdrop-blur-[12px] animate-in fade-in duration-300"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           onClose();
@@ -220,10 +220,10 @@ export function ReadingModal({
         aria-modal="true"
         aria-labelledby="reading-story-title"
         tabIndex={-1}
-        className="relative flex flex-col w-full h-full md:h-[90vh] md:max-w-[720px] bg-[#172235] text-[#E6EEF0] md:rounded-[24px] border border-[rgba(141,194,208,0.16)] shadow-[0_25px_60px_rgba(0,0,0,0.6)] overflow-hidden focus:outline-none animate-in zoom-in-95 duration-200"
+        className="relative flex flex-col w-full h-full md:h-[90vh] md:max-w-[720px] bg-[#1C101A] text-[#F8EDF2] md:rounded-[24px] border border-[rgba(198,107,145,0.16)] shadow-[0_25px_60px_rgba(0,0,0,0.6)] overflow-hidden focus:outline-none animate-in zoom-in-95 duration-200"
       >
         {/* Sticky Top Bar */}
-        <header className="sticky top-0 z-30 flex-none bg-[#172235]/95 backdrop-blur-md border-b border-[rgba(141,194,208,0.14)]">
+        <header className="sticky top-0 z-30 flex-none bg-[#1C101A]/95 backdrop-blur-md border-b border-[rgba(198,107,145,0.14)]">
           <div className="flex items-center justify-between px-5 py-3.5 gap-4">
             {/* Close Button */}
             <button
@@ -231,7 +231,7 @@ export function ReadingModal({
               onClick={onClose}
               title="Close"
               aria-label="Close story reader"
-              className="p-2 -ml-1 text-[#E6EEF0] hover:text-[#8DC2D0] hover:bg-[#8DC2D0]/10 rounded-full transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[#8DC2D0]"
+              className="p-2 -ml-1 text-[#F8EDF2] hover:text-[#C66B91] hover:bg-[#C66B91]/10 rounded-full transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[#C66B91]"
             >
               <svg
                 className="w-5 h-5"
@@ -249,13 +249,13 @@ export function ReadingModal({
             </button>
 
             {/* Truncated Title in Bar */}
-            <span className="font-display text-base sm:text-lg text-[#E6EEF0] truncate font-medium max-w-[240px] sm:max-w-[360px]">
+            <span className="font-display text-base sm:text-lg text-[#F8EDF2] truncate font-medium max-w-[240px] sm:max-w-[360px]">
               {story.title}
             </span>
 
             {/* Font Size Controls */}
             <div
-              className="flex items-center gap-1 bg-[#22334A]/80 rounded-full p-1 border border-[rgba(141,194,208,0.12)]"
+              className="flex items-center gap-1 bg-[#291626]/80 rounded-full p-1 border border-[rgba(198,107,145,0.12)]"
               role="group"
               aria-label="Font size controls"
             >
@@ -265,7 +265,7 @@ export function ReadingModal({
                 disabled={fontSizeIndex <= 0}
                 title="Smaller"
                 aria-label="Smaller text size"
-                className="w-7 h-7 flex items-center justify-center text-xs font-serif font-medium text-[#E6EEF0] hover:text-[#8DC2D0] disabled:opacity-30 disabled:hover:text-[#E6EEF0] rounded-full transition-colors cursor-pointer"
+                className="w-7 h-7 flex items-center justify-center text-xs font-serif font-medium text-[#F8EDF2] hover:text-[#C66B91] disabled:opacity-30 disabled:hover:text-[#F8EDF2] rounded-full transition-colors cursor-pointer"
               >
                 A−
               </button>
@@ -275,7 +275,7 @@ export function ReadingModal({
                 disabled={fontSizeIndex >= 2}
                 title="Larger"
                 aria-label="Larger text size"
-                className="w-7 h-7 flex items-center justify-center text-sm font-serif font-semibold text-[#E6EEF0] hover:text-[#8DC2D0] disabled:opacity-30 disabled:hover:text-[#E6EEF0] rounded-full transition-colors cursor-pointer"
+                className="w-7 h-7 flex items-center justify-center text-sm font-serif font-semibold text-[#F8EDF2] hover:text-[#C66B91] disabled:opacity-30 disabled:hover:text-[#F8EDF2] rounded-full transition-colors cursor-pointer"
               >
                 A+
               </button>
@@ -283,9 +283,9 @@ export function ReadingModal({
           </div>
 
           {/* Thin Reading Progress Line */}
-          <div className="w-full h-[2px] bg-[#22334A] overflow-hidden" aria-hidden="true">
+          <div className="w-full h-[2px] bg-[#291626] overflow-hidden" aria-hidden="true">
             <div
-              className="h-full bg-[#4C87A5] transition-all duration-150 ease-out"
+              className="h-full bg-[#702442] transition-all duration-150 ease-out"
               style={{ width: `${scrollProgress}%` }}
             />
           </div>
@@ -294,24 +294,24 @@ export function ReadingModal({
         {/* Resume Reading Toast */}
         {showResumeToast && (
           <div
-            className="absolute top-16 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm rounded-[14px] bg-[#22334A]/95 backdrop-blur-md border border-[#8DC2D0]/40 p-4 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-3 animate-in fade-in slide-in-from-top-2 duration-300"
+            className="absolute top-16 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm rounded-[14px] bg-[#291626]/95 backdrop-blur-md border border-[#C66B91]/40 p-4 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-3 animate-in fade-in slide-in-from-top-2 duration-300"
             role="status"
           >
-            <span className="font-sans text-xs sm:text-sm text-[#E6EEF0]">
+            <span className="font-sans text-xs sm:text-sm text-[#F8EDF2]">
               Pick up where you left off?
             </span>
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={handleResumeContinue}
-                className="px-3 py-1 rounded-lg bg-[#4C87A5] hover:bg-[#5B97B5] text-[#0C1420] text-xs font-medium transition-colors cursor-pointer"
+                className="px-3 py-1 rounded-lg bg-[#702442] hover:bg-[#862F52] text-[#F8EDF2] text-xs font-medium transition-colors cursor-pointer"
               >
                 Continue
               </button>
               <button
                 type="button"
                 onClick={handleResumeFromStart}
-                className="px-2.5 py-1 rounded-lg text-xs text-[#A0B0C0] hover:text-[#E6EEF0] transition-colors cursor-pointer"
+                className="px-2.5 py-1 rounded-lg text-xs text-[#BFA5B1] hover:text-[#F8EDF2] transition-colors cursor-pointer"
               >
                 From the start
               </button>
@@ -327,7 +327,7 @@ export function ReadingModal({
         >
           {/* Header Banner */}
           <div className="space-y-6">
-            <div className="relative aspect-[16/9] w-full rounded-[16px] overflow-hidden bg-[#22334A] border border-[rgba(141,194,208,0.14)]">
+            <div className="relative aspect-[16/9] w-full rounded-[16px] overflow-hidden bg-[#291626] border border-[rgba(198,107,145,0.14)]">
               <SafeImage
                 src={story.imageUrl}
                 alt={story.title}
@@ -337,23 +337,23 @@ export function ReadingModal({
                 className="object-cover object-center saturate-[0.88] brightness-[0.9]"
               />
               <div
-                className="absolute inset-0 bg-gradient-to-t from-[#172235] via-transparent to-transparent pointer-events-none"
+                className="absolute inset-0 bg-gradient-to-t from-[#1C101A] via-transparent to-transparent pointer-events-none"
                 aria-hidden="true"
               />
             </div>
 
-            <div className="space-y-2 border-b border-[rgba(141,194,208,0.14)] pb-6">
+            <div className="space-y-2 border-b border-[rgba(198,107,145,0.14)] pb-6">
               <div className="flex items-center justify-between pb-2">
                 <Pill>{story.readTimeMinutes} min read</Pill>
               </div>
               <h1
                 id="reading-story-title"
-                className="font-display text-3xl sm:text-4xl md:text-[40px] text-[#E6EEF0] font-medium leading-tight"
+                className="font-display text-3xl sm:text-4xl md:text-[40px] text-[#F8EDF2] font-medium leading-tight"
               >
                 {story.title}
               </h1>
               {story.subtitle && (
-                <p className="font-display italic text-[#A0B0C0] text-lg sm:text-xl">
+                <p className="font-display italic text-[#BFA5B1] text-lg sm:text-xl">
                   {story.subtitle}
                 </p>
               )}
@@ -367,12 +367,12 @@ export function ReadingModal({
                 return (
                   <div
                     key={`break-${index}`}
-                    className="flex justify-center items-center gap-2.5 py-6 my-2 text-[#8DC2D0]"
+                    className="flex justify-center items-center gap-2.5 py-6 my-2 text-[#C66B91]"
                     aria-hidden="true"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC2D0]/60" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC2D0]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC2D0]/60" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]/60" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C66B91]/60" />
                   </div>
                 );
               }
@@ -380,7 +380,7 @@ export function ReadingModal({
               return (
                 <p
                   key={`p-${index}`}
-                  className={`font-reading text-[#E6EEF0] ${fontSizeClasses}`}
+                  className={`font-reading text-[#F8EDF2] ${fontSizeClasses}`}
                 >
                   {paragraph}
                 </p>
@@ -389,8 +389,8 @@ export function ReadingModal({
           </div>
 
           {/* Ending Block */}
-          <div className="pt-16 pb-12 text-center border-t border-[rgba(141,194,208,0.14)] space-y-8 mt-12">
-            <p className="font-display italic text-2xl text-[#8DC2D0] max-w-md mx-auto leading-relaxed">
+          <div className="pt-16 pb-12 text-center border-t border-[rgba(198,107,145,0.14)] space-y-8 mt-12">
+            <p className="font-display italic text-2xl text-[#C66B91] max-w-md mx-auto leading-relaxed">
               {endingLine}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

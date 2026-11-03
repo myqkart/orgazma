@@ -19,8 +19,8 @@ export function Button({
 
   const variantClasses =
     variant === "primary"
-      ? "bg-[#4C87A5] text-[#0C1420] shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] hover:bg-[#5B97B5] hover:shadow-[0_0_25px_rgba(141,194,208,0.3)] active:scale-[0.98]"
-      : "border border-[#8DC2D0] text-[#8DC2D0] hover:bg-[#8DC2D0]/10 hover:border-[#8DC2D0] hover:shadow-[0_0_20px_rgba(141,194,208,0.2)] active:scale-[0.98]";
+      ? "bg-[#702442] text-[#F8EDF2] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-[#862F52] hover:shadow-[0_0_25px_rgba(198,107,145,0.35)] active:scale-[0.98]"
+      : "border border-[#C66B91] text-[#C66B91] hover:bg-[#C66B91]/10 hover:border-[#C66B91] hover:shadow-[0_0_20px_rgba(198,107,145,0.2)] active:scale-[0.98]";
 
   if (href) {
     return (

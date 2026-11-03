@@ -80,3 +80,4 @@ export function getFeatured(): StoryWithSlug | undefined {
 export function getBySlug(slug: string): StoryWithSlug | undefined {
   return parsedStories.find((story) => story.slug === slug);
 }
+

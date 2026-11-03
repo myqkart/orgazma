@@ -44,7 +44,7 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${literata.variable} ${inter.variable}`}
     >
-      <body className="min-h-screen bg-[#0C1420] text-[#E6EEF0] font-[family-name:var(--font-inter)] antialiased relative selection:bg-[#4C87A5] selection:text-[#0C1420]">
+      <body className="min-h-screen bg-[#0E080D] text-[#F8EDF2] font-[family-name:var(--font-inter)] antialiased relative selection:bg-[#702442] selection:text-[#F8EDF2]">
         <div className="grain-overlay" aria-hidden="true" />
         {children}
       </body>

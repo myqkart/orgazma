@@ -17,7 +17,7 @@ export function FeaturedStory({ story, onOpen }: FeaturedStoryProps) {
     <section id="pick" className="scroll-mt-24 relative">
       <Container clean className="pt-8 pb-16 md:py-20">
         <div className="mb-6 space-y-1">
-          <p className="font-display italic text-[#A0B0C0] text-sm sm:text-base">
+          <p className="font-display italic text-[#BFA5B1] text-sm sm:text-base">
             Chosen for the mood you&apos;re probably in.
           </p>
         </div>

@@ -11,3 +11,4 @@ export interface Story {
 export interface StoryWithSlug extends Story {
   slug: string;
 }
+
