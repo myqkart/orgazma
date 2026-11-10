@@ -263,7 +263,7 @@ const META: Record<string, StoryMeta> = {
     heat: "ruin",
   },
   stargazing: {
-    hook: "The camp is asleep. Malini is not. Vihaan is, until he isn't.",
+    hook: "The camp is asleep. Malini is not. Ayaan is, until he isn't.",
     desire: "A sleeping bag, a sky full of witnesses, and a hand over his mouth so nobody wakes.",
     authorNote:
       "Everyone else is in the same field. The quiet is the whole risk. She starts it. He finishes awake.",

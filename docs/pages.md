@@ -19,7 +19,7 @@ Order of the page, top to bottom:
 {
   "title": "Around 6:00 AM",
   "subtitle": "Morning dream always comes true",
-  "previewText": "With each forward movement, Vihaan lifted her upper leg, exposing...",
+  "previewText": "With each forward movement, Ayaan lifted her upper leg, exposing...",
   "imageUrl": "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb",
   "readTimeMinutes": 8,
   "isFeatured": true,

@@ -69,7 +69,7 @@ Buttons: "Another story" / "Back to the top"
 - Label: "Tonight's pick"
 - Title: "Around 6:00 AM"
 - Subtitle: "Morning dream always comes true"
-- Preview: "With each forward movement, Vihaan lifted her upper leg, exposing…"
+- Preview: "With each forward movement, Ayaan lifted her upper leg, exposing…"
 - Pill: "8 min of your own time"
 - CTA: "Read it now"
 - Under CTA: "Best read alone, door closed."
@@ -78,7 +78,7 @@ Buttons: "Another story" / "Back to the top"
 - Image with deep blue gradient, pill "8 min" top-right
 - Title: "Around 6:00 AM"
 - Subtitle (italic): "Morning dream always comes true"
-- Preview (3 lines): "With each forward movement, Vihaan lifted her upper leg, exposing…"
+- Preview (3 lines): "With each forward movement, Ayaan lifted her upper leg, exposing…"
 - Link: "Keep reading →"
 
 ## 11. Microcopy That Sets the Mood

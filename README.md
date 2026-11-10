@@ -45,7 +45,7 @@ Each story in the array follows this exact schema:
     "The early light barely filtered through the linen blinds when the quiet warmth of waking skin settled the room into stillness.",
     "There is a rhythm to the morning before the street below stirs to life.",
     "***",
-    "Vihaan's hand moved with unhurried certainty, fingertips brushing along the contour of her waist.",
+    "Ayaan's hand moved with unhurried certainty, fingertips brushing along the contour of her waist.",
     "A soft intake of breath was the only response needed."
   ]
 }
