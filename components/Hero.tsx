@@ -6,9 +6,12 @@ import {
   RoseOrnament,
   SparkleOrnament,
 } from "@/components/decor/Ornaments";
+import { getTonight } from "@/lib/catalog";
 import { ATMOS, SITE } from "@/lib/site";
 
 export function Hero() {
+  const tonight = getTonight();
+
   return (
     <section className="relative min-h-[100svh] min-h-[100dvh] flex items-end overflow-hidden">
       <div className="absolute inset-0">
@@ -41,19 +44,24 @@ export function Hero() {
         </p>
 
         <h1 className="mt-4 sm:mt-6 max-w-2xl font-display text-[1.35rem] sm:text-3xl md:text-4xl font-medium text-foreground/95 leading-snug animate-fade-rise-delay text-balance">
-          Filthy stories for nights your body won&apos;t behave.
+          Come in. Leave the light off.
         </h1>
 
         <p className="mt-3 sm:mt-4 max-w-xl font-reading text-[15px] sm:text-lg text-muted leading-relaxed animate-fade-rise-delay">
-          Explicit erotic fiction. Slow burns, wet mornings, locked doors — read until you&apos;re shaking.
+          Explicit stories for a locked room, sorted by hunger, heat, and how long you want to stay. Not a feed. A night.
         </p>
 
         <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 animate-fade-rise-delay-2 w-full sm:w-auto">
-          <Button variant="primary" size="lg" href="/stories" className="w-full sm:w-auto">
-            Feed the hunger
+          <Button
+            variant="primary"
+            size="lg"
+            href={tonight ? `/stories/${tonight.slug}` : "/stories"}
+            className="w-full sm:w-auto"
+          >
+            Open tonight&apos;s story
           </Button>
-          <Button variant="glass" size="lg" href="/about" className="w-full sm:w-auto">
-            What this place is
+          <Button variant="glass" size="lg" href="/cravings" className="w-full sm:w-auto">
+            Name what you want
           </Button>
         </div>
       </div>

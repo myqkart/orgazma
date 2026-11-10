@@ -106,7 +106,7 @@ video {
   outline-offset: 3px;
 }
 
-/* —— Night sky —— */
+/* Night sky */
 .starfield {
   position: absolute;
   inset: 0;
@@ -357,6 +357,16 @@ video {
 .reading-chamber {
   background:
     linear-gradient(180deg, rgba(10, 16, 32, 0.55) 0%, rgba(4, 6, 15, 0.15) 40%, rgba(4, 6, 15, 0.5) 100%);
+}
+
+.reading-dim .starfield,
+.reading-dim .starfield-dense,
+.reading-dim .firefly {
+  opacity: 0.12;
+}
+
+.reading-dim .reading-sheet {
+  background: rgba(4, 6, 15, 0.94);
 }
 
 .reading-prose p {

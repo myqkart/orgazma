@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import { SafeImage } from "@/components/ui/ImageFallback";
 import { FlourishOrnament, RoseOrnament } from "@/components/decor/Ornaments";
-import type { StoryWithSlug } from "@/types/story";
+import { heatLabel, lengthLabel, type StoryCardData } from "@/lib/taxonomy";
 
 interface FeaturedCardProps {
-  story: StoryWithSlug;
+  story: StoryCardData;
 }
 
 export function FeaturedCard({ story }: FeaturedCardProps) {
@@ -30,7 +30,7 @@ export function FeaturedCard({ story }: FeaturedCardProps) {
           <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
             <Pill variant="glass">
               <span className="sm:hidden">{story.readTimeMinutes} min</span>
-              <span className="hidden sm:inline">{story.readTimeMinutes} min of pure heat</span>
+              <span className="hidden sm:inline">{lengthLabel(story.length)} · {story.readTimeMinutes} min</span>
             </Pill>
           </div>
         </div>
@@ -39,7 +39,7 @@ export function FeaturedCard({ story }: FeaturedCardProps) {
       <div className="lg:col-span-6 flex flex-col justify-center space-y-4 sm:space-y-5">
         <div className="space-y-2">
           <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-accent font-semibold">
-            Tonight&apos;s filthy pick
+            Tonight&apos;s door, left open
           </p>
           <FlourishOrnament className="w-24 sm:w-28 h-5 sm:h-6 text-accent/50" />
         </div>
@@ -55,8 +55,14 @@ export function FeaturedCard({ story }: FeaturedCardProps) {
           )}
         </div>
 
-        <p className="font-reading text-foreground/90 text-[15px] sm:text-lg leading-relaxed line-clamp-4">
-          {story.previewText}
+        <p className="font-display italic text-xl sm:text-2xl text-foreground/95 leading-snug text-balance">
+          {story.hook}
+        </p>
+        <p className="font-reading text-foreground/80 text-[15px] sm:text-lg leading-relaxed">
+          {story.desire}
+        </p>
+        <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-accent">
+          {heatLabel(story.heat)} · {lengthLabel(story.length)} · {story.readTimeMinutes} min
         </p>
 
         <div className="pt-1 sm:pt-2 space-y-3">
@@ -66,10 +72,10 @@ export function FeaturedCard({ story }: FeaturedCardProps) {
             href={`/stories/${story.slug}`}
             className="w-full sm:w-auto"
           >
-            Read it wet · now
+            Come inside
           </Button>
           <p className="font-reading italic text-sm text-muted">
-            Best with the door locked and nothing under your clothes.
+            {story.authorNote}
           </p>
         </div>
       </div>

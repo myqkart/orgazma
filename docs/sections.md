@@ -1,4 +1,4 @@
-# sections.md — Sections
+# sections.md: Sections
 
 Each section is a React component. Copy shown here is the default; the full bank is in content.md. Colors and type come from design.md.
 

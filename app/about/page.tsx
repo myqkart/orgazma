@@ -73,6 +73,46 @@ export default function AboutPage() {
           </p>
         </div>
 
+        <div className="space-y-4">
+          <h2 className="font-display text-2xl sm:text-3xl text-foreground">How a night here goes</h2>
+          <ol className="space-y-4">
+            {[
+              {
+                title: "Tonight",
+                body: "We leave one door open. If you do not want to choose, start there.",
+                href: "/",
+              },
+              {
+                title: "Cravings",
+                body: "Name the hunger: dreams, silence, strangers, being seen, her hands. Then step into that room.",
+                href: "/cravings",
+              },
+              {
+                title: "The archive",
+                body: "If you want it precise: heat, length, and the kind of touch.",
+                href: "/stories",
+              },
+              {
+                title: "The nightstand",
+                body: "Leave a story unfinished. It waits on this device until you come back warm.",
+                href: "/nightstand",
+              },
+            ].map((step, index) => (
+              <li key={step.title} className="border-t border-white/10 pt-4">
+                <a href={step.href} className="group block touch-manipulation">
+                  <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-primary">
+                    0{index + 1}
+                  </p>
+                  <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">
+                    {step.title}
+                  </h3>
+                  <p className="font-reading text-sm text-muted mt-1">{step.body}</p>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-4 pt-2 sm:pt-4">
           {[
             {
@@ -81,7 +121,7 @@ export default function AboutPage() {
             },
             {
               title: "Made to read",
-              body: "Comfortable type, font controls, progress, and resume — so you never lose the wet part.",
+              body: "Comfortable type, font controls, progress, and resume, so you never lose the wet part.",
             },
             {
               title: "Adults only",

@@ -3,15 +3,45 @@
 import React, { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import Link from "next/link";
 import { SafeImage } from "@/components/ui/ImageFallback";
-import { Button } from "@/components/ui/Button";
 import { NightSky } from "@/components/NightSky";
 import { FlourishOrnament } from "@/components/decor/Ornaments";
+import { StoryAfterglow } from "@/components/StoryAfterglow";
 import { ENDING_LINES } from "@/lib/site";
+import { markFinished, toggleDim, toggleSaved, useDim, useSaved } from "@/lib/nightstand";
+import {
+  cravingById,
+  heatLabel,
+  kinkLabel,
+  lengthBand,
+  lengthLabel,
+  metaFor,
+  type StoryCardData,
+} from "@/lib/taxonomy";
 import type { StoryWithSlug } from "@/types/story";
 
 interface StoryViewProps {
   story: StoryWithSlug;
-  nextSlug?: string;
+  related: StoryCardData[];
+  follow: { card: StoryCardData; loop: boolean; threadTitle: string } | null;
+}
+
+function phaseFor(progress: number) {
+  if (progress < 12) return "Arriving";
+  if (progress < 42) return "Warming";
+  if (progress < 78) return "Deep";
+  if (progress < 95) return "Close";
+  return "Afterglow";
+}
+
+function MetaLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="inline-flex items-center min-h-9 px-3 rounded-full border border-white/15 bg-white/[0.04] font-sans text-[11px] uppercase tracking-[0.12em] text-foreground/80 hover:text-primary hover:border-primary/40 touch-manipulation"
+    >
+      {children}
+    </Link>
+  );
 }
 
 function FontControls({
@@ -53,10 +83,15 @@ function FontControls({
   );
 }
 
-export function StoryView({ story, nextSlug }: StoryViewProps) {
+export function StoryView({ story, related, follow }: StoryViewProps) {
   const heroRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [pastHero, setPastHero] = useState(false);
+  const saved = useSaved(story.slug);
+  const dim = useDim();
+  const meta = metaFor(story.slug);
+  const phase = phaseFor(scrollProgress);
+  const primaryCraving = meta?.moods[0] ? cravingById(meta.moods[0]) : undefined;
 
   const [fontSizeIndex, setFontSizeIndex] = useState<number>(() => {
     if (typeof window === "undefined") return 1;
@@ -112,10 +147,10 @@ export function StoryView({ story, nextSlug }: StoryViewProps) {
   }, []);
 
   useEffect(() => {
-    const title = `${story.title} — explicit erotic story`;
+    const title = `${story.title}: explicit erotic story`;
     const description =
       story.previewText?.slice(0, 155).trim() ||
-      `${story.title} — explicit erotic fiction on Orgazma. 18+ only.`;
+      `${story.title}: explicit erotic fiction on Orgazma. 18+ only.`;
 
     document.title = title;
 
@@ -174,7 +209,7 @@ export function StoryView({ story, nextSlug }: StoryViewProps) {
             String(Math.round(window.scrollY))
           );
         } else if (pct >= 95) {
-          localStorage.removeItem(`pos:${story.slug}`);
+          markFinished(story.slug);
         }
       } catch {
         // ignore
@@ -199,10 +234,10 @@ export function StoryView({ story, nextSlug }: StoryViewProps) {
   }, [fontSizeIndex]);
 
   return (
-    <div className="relative reading-chamber min-h-[70svh] pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+    <div className={`relative reading-chamber min-h-[70svh] pb-[max(2.5rem,env(safe-area-inset-bottom))] ${dim ? "reading-dim" : ""}`}>
       <NightSky dense fireflies className="fixed inset-0 z-0" />
 
-      {/* Compact sticky bar — only after leaving the cinematic cover */}
+      {/* Compact sticky bar, shown after leaving the cinematic cover */}
       <div
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           pastHero
@@ -217,18 +252,45 @@ export function StoryView({ story, nextSlug }: StoryViewProps) {
                 href="/stories"
                 className="font-sans text-[11px] uppercase tracking-[0.12em] text-muted hover:text-primary transition-colors touch-manipulation py-2 shrink-0"
               >
-                ← Heat
+                ← Archive
               </Link>
-              <span className="font-display text-sm text-foreground truncate font-medium min-w-0 text-center flex-1 px-2">
-                {story.title}
+              <span className="min-w-0 flex-1 px-2 text-center">
+                <span className="block font-display text-sm text-foreground truncate font-medium">
+                  {story.title}
+                </span>
+                <span className="block font-sans text-[10px] uppercase tracking-[0.16em] text-primary">
+                  {phase}
+                </span>
               </span>
-              <FontControls
-                fontSizeIndex={fontSizeIndex}
-                onChange={changeFontSize}
-                compact
-              />
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => toggleSaved(story.slug)}
+                  aria-pressed={saved}
+                  aria-label={saved ? "Remove from nightstand" : "Keep on your nightstand"}
+                  className={`h-8 px-2.5 rounded-full text-[10px] uppercase tracking-[0.12em] font-sans border cursor-pointer touch-manipulation ${
+                    saved
+                      ? "bg-primary/20 text-primary border-primary/40"
+                      : "text-foreground/80 border-white/15"
+                  }`}
+                >
+                  {saved ? "Kept" : "Keep"}
+                </button>
+                <FontControls
+                  fontSizeIndex={fontSizeIndex}
+                  onChange={changeFontSize}
+                  compact
+                />
+              </div>
             </div>
-            <div className="h-[2px] bg-white/[0.04]" aria-hidden="true">
+            <div
+              className="h-[2px] bg-white/[0.04]"
+              role="progressbar"
+              aria-valuenow={Math.round(scrollProgress)}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={`Reading, ${phase}`}
+            >
               <div
                 className="h-full reading-progress transition-all duration-150 ease-out"
                 style={{ width: `${scrollProgress}%` }}
@@ -244,7 +306,7 @@ export function StoryView({ story, nextSlug }: StoryViewProps) {
           role="status"
         >
           <span className="font-sans text-sm text-foreground text-center sm:text-left">
-            Slip back into where you left off?
+            You were in the middle of this.
           </span>
           <div className="flex items-center justify-center gap-2">
             <button
@@ -257,7 +319,7 @@ export function StoryView({ story, nextSlug }: StoryViewProps) {
               }}
               className="min-h-10 px-4 rounded-full bg-primary text-[#1a1408] text-xs font-semibold cursor-pointer touch-manipulation"
             >
-              Continue wet
+              Take me back
             </button>
             <button
               type="button"
@@ -302,15 +364,27 @@ export function StoryView({ story, nextSlug }: StoryViewProps) {
             href="/stories"
             className="inline-flex items-center gap-2 min-h-11 px-4 rounded-full bg-black/40 backdrop-blur-md border border-white/15 font-sans text-[11px] uppercase tracking-[0.14em] text-foreground hover:text-primary hover:border-primary/40 transition-all touch-manipulation shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
           >
-            ← Back to heat
+            ← Archive
           </Link>
-          <FontControls fontSizeIndex={fontSizeIndex} onChange={changeFontSize} />
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => toggleDim()}
+              aria-pressed={dim}
+              className="min-h-11 px-4 rounded-full bg-black/40 backdrop-blur-md border border-white/15 font-sans text-[11px] uppercase tracking-[0.14em] text-foreground hover:text-primary cursor-pointer touch-manipulation"
+            >
+              <span className="sm:hidden">{dim ? "Bright" : "Dim"}</span>
+              <span className="hidden sm:inline">{dim ? "Lights up" : "Dim the room"}</span>
+            </button>
+            <FontControls fontSizeIndex={fontSizeIndex} onChange={changeFontSize} />
+          </div>
         </div>
 
         {/* Title block on the cover */}
         <div className="relative z-20 mt-auto px-5 sm:px-8 md:px-12 lg:px-16 pb-10 sm:pb-14 max-w-[1080px] mx-auto w-full space-y-4 sm:space-y-5">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-primary/30 text-primary text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.16em] uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(230,179,90,0.9)]" />
+            {meta ? `${heatLabel(meta.heat)} · ` : ""}
             {story.readTimeMinutes} min · private reading
           </div>
 
@@ -333,10 +407,63 @@ export function StoryView({ story, nextSlug }: StoryViewProps) {
 
       {/* Prose chamber */}
       <article className="relative z-10 max-w-[1080px] mx-auto px-5 sm:px-8 lg:px-10 pb-8">
-        <div className="relative rounded-[28px] sm:rounded-[32px] border border-white/[0.08] bg-surface/55 backdrop-blur-xl px-5 sm:px-12 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14 shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+        <div className="reading-sheet relative rounded-[28px] sm:rounded-[32px] border border-white/[0.08] bg-surface/55 backdrop-blur-xl px-5 sm:px-12 lg:px-16 pt-12 sm:pt-16 pb-10 sm:pb-14 shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
           <div className="absolute top-5 left-1/2 -translate-x-1/2 w-10 h-1 rounded-full bg-primary/45" aria-hidden="true" />
 
-          <div className="reading-prose max-w-[78ch] mx-auto space-y-6 sm:space-y-7 mt-4 sm:mt-6">
+          {meta && (
+            <div className="max-w-[64ch] mx-auto mt-4 sm:mt-6 space-y-5 pb-8 mb-8 border-b border-white/[0.07]">
+              <p className="font-display italic text-2xl sm:text-3xl text-foreground leading-snug text-balance">
+                {meta.hook}
+              </p>
+              <p className="font-reading text-[15px] sm:text-lg text-foreground/80 leading-relaxed">
+                {meta.desire}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <MetaLink href={`/stories?heat=${meta.heat}`}>{heatLabel(meta.heat)}</MetaLink>
+                <MetaLink href={`/stories?length=${lengthBand(story.readTimeMinutes)}`}>
+                  {lengthLabel(lengthBand(story.readTimeMinutes))}
+                </MetaLink>
+                {meta.moods.map((id) => {
+                  const craving = cravingById(id);
+                  if (!craving) return null;
+                  return (
+                    <MetaLink key={id} href={`/cravings/${id}`}>
+                      {craving.label}
+                    </MetaLink>
+                  );
+                })}
+                {meta.kinks.slice(0, 3).map((id) => (
+                  <MetaLink key={id} href={`/stories?kink=${id}`}>
+                    {kinkLabel(id)}
+                  </MetaLink>
+                ))}
+              </div>
+              <aside className="border-l border-primary/40 pl-4 space-y-1">
+                <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-primary">
+                  Before you begin
+                </p>
+                <p className="font-reading italic text-muted leading-relaxed">{meta.authorNote}</p>
+              </aside>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="#read"
+                  className="inline-flex items-center justify-center min-h-11 px-5 rounded-full bg-primary text-[#1a1408] font-sans text-sm font-semibold touch-manipulation"
+                >
+                  Begin the story
+                </a>
+                <button
+                  type="button"
+                  onClick={() => toggleSaved(story.slug)}
+                  aria-pressed={saved}
+                  className="inline-flex items-center justify-center min-h-11 px-5 rounded-full border border-white/15 font-sans text-sm text-foreground hover:border-primary/40 hover:text-primary cursor-pointer touch-manipulation"
+                >
+                  {saved ? "On your nightstand" : "Keep for later"}
+                </button>
+              </div>
+            </div>
+          )}
+
+          <div id="read" className="reading-prose max-w-[64ch] mx-auto space-y-6 sm:space-y-7 mt-4 sm:mt-6 scroll-mt-24">
             {story.content.map((paragraph, index) => {
               if (paragraph.trim() === "***") {
                 return (
@@ -369,33 +496,16 @@ export function StoryView({ story, nextSlug }: StoryViewProps) {
             })}
           </div>
 
-          <div className="pt-12 sm:pt-16 text-center space-y-6 border-t border-white/[0.07] mt-12 sm:mt-14">
-            <FlourishOrnament className="mx-auto w-36 h-7 text-primary/40" />
-            <p className="font-reading italic text-xl sm:text-2xl text-primary max-w-md mx-auto leading-relaxed">
-              {endingLine}
-            </p>
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
-              {nextSlug ? (
-                <Button variant="primary" href={`/stories/${nextSlug}`} className="w-full sm:w-auto">
-                  Another filthy one
-                </Button>
-              ) : (
-                <Button variant="primary" href="/stories" className="w-full sm:w-auto">
-                  Back to the heat
-                </Button>
-              )}
-              <Button variant="glass" href="/stories" className="w-full sm:w-auto">
-                Browse every craving
-              </Button>
-            </div>
-            <p className="font-sans text-xs text-muted">
-              Or{" "}
-              <Link href="/" className="text-primary hover:underline touch-manipulation">
-                return to tonight
-              </Link>
-              .
-            </p>
-          </div>
+          <StoryAfterglow
+            endingLine={endingLine}
+            follow={follow}
+            related={related}
+            craving={
+              primaryCraving
+                ? { href: `/cravings/${primaryCraving.id}`, label: primaryCraving.label }
+                : null
+            }
+          />
         </div>
       </article>
     </div>

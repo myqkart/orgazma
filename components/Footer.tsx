@@ -58,14 +58,16 @@ export function Footer({ year = 2026 }: { year?: number }) {
             </p>
           </div>
 
-          <Button variant="primary" size="lg" href="/stories" className="w-full max-w-xs sm:w-auto">
-            Slip into another story
+          <Button variant="primary" size="lg" href="/cravings" className="w-full max-w-xs sm:w-auto">
+            Choose another hunger
           </Button>
 
           <nav className="flex flex-wrap items-center justify-center gap-2 font-sans text-sm w-full px-1">
             {[
               { href: "/", label: "Tonight" },
-              { href: "/stories", label: "The Heat" },
+              { href: "/cravings", label: "Cravings" },
+              { href: "/stories", label: "Archive" },
+              { href: "/nightstand", label: "Nightstand" },
               { href: "/about", label: "After Dark" },
             ].map((link) => (
               <Link

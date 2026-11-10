@@ -8,14 +8,16 @@ import { SITE } from "@/lib/site";
 
 const LINKS = [
   { href: "/", label: "Tonight" },
-  { href: "/stories", label: "The Heat" },
-  { href: "/about", label: "After Dark" },
+  { href: "/cravings", label: "Cravings" },
+  { href: "/stories", label: "Archive" },
+  { href: "/nightstand", label: "Nightstand" },
 ];
 
 export function Navigation() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openPath, setOpenPath] = useState<string | null>(null);
+  const mobileMenuOpen = openPath !== null && openPath === pathname;
   const isReading = pathname?.startsWith("/stories/") && pathname !== "/stories";
 
   useEffect(() => {
@@ -24,10 +26,6 @@ export function Navigation() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
@@ -83,7 +81,7 @@ export function Navigation() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-4 py-2 rounded-full font-sans text-[13px] font-medium transition-all duration-200 touch-manipulation ${
+                    className={`px-3 py-2 rounded-full font-sans text-[13px] font-medium transition-all duration-200 touch-manipulation ${
                       active
                         ? "bg-primary/20 text-primary shadow-[inset_0_0_0_1px_rgba(230,179,90,0.35)]"
                         : "text-foreground/75 hover:text-foreground hover:bg-white/[0.06]"
@@ -105,7 +103,7 @@ export function Navigation() {
               </span>
               <button
                 type="button"
-                onClick={() => setMobileMenuOpen((v) => !v)}
+                onClick={() => setOpenPath(mobileMenuOpen ? null : pathname ?? "/")}
                 aria-expanded={mobileMenuOpen}
                 aria-label="Toggle menu"
                 className="touch-target w-11 h-11 rounded-full bg-white/[0.06] border border-white/[0.12] flex items-center justify-center text-foreground hover:text-primary cursor-pointer touch-manipulation"
@@ -130,7 +128,7 @@ export function Navigation() {
               type="button"
               aria-label="Close menu"
               className="fixed inset-0 z-40 bg-black/55 backdrop-blur-sm md:hidden"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => setOpenPath(null)}
             />
             <div className="relative z-50 md:hidden mt-2 p-2 rounded-[22px] bg-surface/95 backdrop-blur-2xl border border-white/[0.1] shadow-2xl">
               <nav className="flex flex-col gap-1" aria-label="Mobile">

@@ -22,7 +22,7 @@ export default function NotFound() {
         Whatever you were hunting isn&apos;t here. Try the archive instead.
       </p>
       <Button variant="primary" href="/stories">
-        Back to the heat
+        Back to the archive
       </Button>
     </Container>
   );

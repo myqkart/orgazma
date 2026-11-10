@@ -1,6 +1,6 @@
 import React from "react";
 
-/** Soft rose outline — decorative only */
+/** Soft rose outline. Decorative only. */
 export function RoseOrnament({ className = "" }: { className?: string }) {
   return (
     <svg

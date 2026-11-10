@@ -21,8 +21,8 @@ Colors:
 
 Typography:
 Replaced the high-contrast, razor-thin Cormorant Garamond and idiosyncratic Literata pairing with a much cleaner, dignified, and highly legible combination:
-- **Display**: **Playfair Display** (`--font-playfair`) for headlines and story titles — sturdy, stately, and balanced.
-- **Reading Body**: **Lora** (`--font-lora`) for all prose and story reading — renowned for superior screen legibility and relaxed optical rhythm.
+- **Display**: **Playfair Display** (`--font-playfair`) for headlines and story titles: sturdy, stately, and balanced.
+- **Reading Body**: **Lora** (`--font-lora`) for all prose and story reading: renowned for superior screen legibility and relaxed optical rhythm.
 - **UI & Subtitles**: **Inter** (`--font-inter`) for modern, crisp UI controls and clean metadata tags.
 
 ## Decision 3: Server Component Footer & Prerender Stability

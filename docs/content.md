@@ -1,4 +1,4 @@
-# content.md — Content Bible
+# content.md: Content Bible
 
 All interface copy for the site, plus the voice it should be written in. Anything not listed here should be written in the same voice.
 
@@ -32,8 +32,8 @@ Pick one: **Velvet Hours**, **After Dark Pages**, **The Late Shelf**, **Slow Bur
 - Alternates for headline: "Lights low. Phone down." / "Your private after-hours." / "Stories that make the room feel warmer."
 
 ## 5. Section Titles & Intros
-- Featured: "Tonight's pick" — "Chosen for the mood you're probably in."
-- Collection: "The Collection" — "Pick the mood you're in. Every story is a door."
+- Featured: "Tonight's pick": "Chosen for the mood you're probably in."
+- Collection: "The Collection": "Pick the mood you're in. Every story is a door."
 - Search placeholder: "Search for a mood, a name, a morning…"
 
 ## 6. Buttons & Labels
@@ -41,7 +41,7 @@ Pick one: **Velvet Hours**, **After Dark Pages**, **The Late Shelf**, **Slow Bur
 - Featured CTA: "Read it now"
 - Read time pill: "{n} min" (featured: "{n} min of your own time")
 - Modal controls: "Smaller", "Larger", "Close"
-- Resume toast: "Pick up where you left off?" — "Continue" / "From the start"
+- Resume toast: "Pick up where you left off?": "Continue" / "From the start"
 - Back to top: "Back to the top"
 
 ## 7. Reading Modal Endings (rotate randomly)
@@ -59,9 +59,9 @@ Buttons: "Another story" / "Back to the top"
 
 ## 9. System States
 - Loading: "Setting the mood…"
-- Empty: "Nothing here yet. Something good is coming." — "Check back soon"
+- Empty: "Nothing here yet. Something good is coming.": "Check back soon"
 - No search results: "Nothing like that yet. Try another mood."
-- Error: "The lights flickered. Try again in a moment." — "Reload"
+- Error: "The lights flickered. Try again in a moment.": "Reload"
 
 ## 10. Example Cards (using the sample JSON)
 
@@ -87,7 +87,7 @@ Buttons: "Another story" / "Back to the top"
 - Font size tooltip: "Make it easier on your eyes."
 - Toast when closing late at night (after 10pm local, optional): "Sleep well. Or don't."
 - 404 / unknown link: "That door isn't here. Try another."
-- Page title: "{Site Name} — Adult Fiction for Women"
+- Page title: "{Site Name}: Adult Fiction for Women"
 - Meta description: "Slow-burn erotic stories for adult women. 18+ only."
 
 ## 12. Content Safety Notes

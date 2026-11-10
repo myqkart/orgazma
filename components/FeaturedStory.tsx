@@ -1,9 +1,9 @@
 import React from "react";
 import { Container } from "@/components/ui/Container";
 import { FeaturedCard } from "@/components/FeaturedCard";
-import type { StoryWithSlug } from "@/types/story";
+import type { StoryCardData } from "@/lib/taxonomy";
 
-export function FeaturedStory({ story }: { story?: StoryWithSlug }) {
+export function FeaturedStory({ story }: { story?: StoryCardData }) {
   if (!story) return null;
 
   return (

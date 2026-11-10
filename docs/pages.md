@@ -1,4 +1,4 @@
-# pages.md — Page Structure & User Flow
+# pages.md: Page Structure & User Flow
 
 ## Structure
 One page (`/`) plus a modal. No router needed. Deep-linking to a story is supported through the URL hash (`/#story=around-6-00-am`).
@@ -63,9 +63,9 @@ If they decline: redirect to a neutral page (config value, default `https://www.
 - **Offline:** page still works since data is bundled.
 
 ## Persistence (localStorage keys)
-- `ageOk` — age confirmation
-- `fontSize` — reading size preference
-- `pos:{slug}` — saved scroll position per story
+- `ageOk`: age confirmation
+- `fontSize`: reading size preference
+- `pos:{slug}`: saved scroll position per story
 
 ## Updating Stories
 Edit `stories.json`, add or reorder objects, set `isFeatured: true` on the one to spotlight, rebuild and redeploy. No other code changes needed.

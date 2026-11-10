@@ -1,4 +1,4 @@
-# Velvet Hours — Adult Fiction for Women
+# Velvet Hours: Adult Fiction for Women
 
 A private, luxurious, single-page web experience for adult women's erotic fiction. Built with Next.js (App Router), TypeScript, Tailwind CSS v4, and Google Fonts (Cormorant Garamond, Literata, Inter).
 

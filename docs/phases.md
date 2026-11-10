@@ -1,4 +1,4 @@
-# phases.md — Build Plan (Next.js App Router, inside `my-app`)
+# phases.md: Build Plan (Next.js App Router, inside `my-app`)
 
 All work happens inside the existing `my-app` project created with `create-next-app`. Read `docs/design.md`, `docs/sections.md`, `docs/pages.md` and `docs/content.md` for details. This file says what to build, and when. Where those docs mention Vite or a router, follow the Next.js approach here instead.
 
@@ -6,7 +6,7 @@ Paths below assume no `src/` folder. If the project has one, put everything unde
 
 ---
 
-## Phase 1 — Theme, Fonts & Cleanup
+## Phase 1: Theme, Fonts & Cleanup
 **Build:**
 - Remove default boilerplate from `app/page.tsx`, `app/globals.css`, and unused files in `public/`
 - Color tokens from design.md (Tailwind v4: `@theme` in `app/globals.css`; v3: `tailwind.config`)
@@ -19,7 +19,7 @@ Paths below assume no `src/` folder. If the project has one, put everything unde
 
 ---
 
-## Phase 2 — Data Layer
+## Phase 2: Data Layer
 **Build:**
 - `data/stories.json` with 6 placeholder stories in the exact schema (one featured)
 - `types/story.ts` with `Story` (raw) and `StoryWithSlug`
@@ -29,14 +29,14 @@ Paths below assume no `src/` folder. If the project has one, put everything unde
 
 ---
 
-## Phase 3 — Shared Components
+## Phase 3: Shared Components
 **Build (`components/`):** `Button` (primary/ghost), `Pill`, `Container`, `StoryCard` (default + featured variants, uses `next/image`, gradient overlay, hover lift), `LoadingState`, `EmptyState`, `ErrorState`, image-failed placeholder.
 
 **Done when:** a preview page shows all components with placeholder data and hover/focus states match design.md. Run `npm run lint`.
 
 ---
 
-## Phase 4 — Navigation, Hero & Footer
+## Phase 4: Navigation, Hero & Footer
 **Build:**
 - `Navigation` (client): transparent then blurred Surface on scroll, anchor links, mobile menu
 - `Hero` with glow, line-by-line fade-in, CTAs and scroll cue from content.md
@@ -47,7 +47,7 @@ Paths below assume no `src/` folder. If the project has one, put everything unde
 
 ---
 
-## Phase 5 — Featured & Stories Grid
+## Phase 5: Featured & Stories Grid
 **Build:**
 - `FeaturedStory` (hidden when none), anchor `#pick`
 - `StoriesGrid` (3/2/1 columns), anchor `#collection`
@@ -58,7 +58,7 @@ Paths below assume no `src/` folder. If the project has one, put everything unde
 
 ---
 
-## Phase 6 — Reading Modal
+## Phase 6: Reading Modal
 **Build:**
 - Client `StoryReader` wrapper that owns `activeSlug` state and renders the grid, featured section and modal together
 - `ReadingModal`: backdrop blur, banner, title, subtitle, read time, paragraphs as plain text (`***` becomes a divider), sticky top bar (close, A−/A+), progress line, body scroll lock, Esc/backdrop close, focus trap, focus returns to the card, ending block with rotating closing line and two buttons
@@ -68,7 +68,7 @@ Paths below assume no `src/` folder. If the project has one, put everything unde
 
 ---
 
-## Phase 7 — Age Gate & Persistence
+## Phase 7: Age Gate & Persistence
 **Build:**
 - `AgeGate` (client) with `mounted` check to avoid hydration flash; content stays hidden until accepted; decline redirects to a neutral URL
 - `localStorage` keys: `ageOk`, `fontSize`, `pos:{slug}`; resume-reading toast ("Pick up where you left off?")
@@ -78,17 +78,17 @@ Paths below assume no `src/` folder. If the project has one, put everything unde
 
 ---
 
-## Phase 8 — Polish & Accessibility
+## Phase 8: Polish & Accessibility
 **Build:** motion pass with `prefers-reduced-motion`, responsive checks at 360 / 768 / 1024 / 1440, keyboard navigation, dialog ARIA, contrast fixes, page title and description, delete unused files and dependencies.
 
 **Done when:** keyboard-only use works end to end, `npm run lint` and `npm run build` pass with no warnings, mobile layout is clean.
 
 ---
 
-## Phase 9 — My Real Stories (run later, separately)
+## Phase 9: My Real Stories (run later, separately)
 **Prompt:** "Replace `data/stories.json` with the attached file without changing the schema. Check for missing fields, duplicate titles, very long paragraphs, and broken image URLs (add new domains to `remotePatterns` if needed). Report what you find."
 
-## Phase 10 — Deploy (run later, separately)
+## Phase 10: Deploy (run later, separately)
 **Prompt:** "Prepare `my-app` for Vercel. Confirm `npm run build` passes, add anything required, and give me step-by-step deploy instructions. Optional: set the site to `noindex` via `metadata.robots` if I want it unlisted."
 
 ---

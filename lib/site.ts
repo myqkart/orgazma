@@ -1,4 +1,4 @@
-/** Site chrome only — never mutates story body text. */
+/** Site chrome only. Never mutates story body text. */
 
 export const SITE = {
   name: "Orgazma",
@@ -7,7 +7,7 @@ export const SITE = {
   description:
     "Explicit erotic stories for adults who want heat, hunger, and a door that locks. Midnight reading for the desperately wet. 18+ only.",
   longDescription:
-    "Orgazma is an adults-only erotic fiction library made for locked doors and low lights. Slow burns, filthy mornings, and intimate bedtime stories — written to be read alone.",
+    "Orgazma is an adults-only erotic fiction library made for locked doors and low lights. Slow burns, filthy mornings, and intimate bedtime stories, written to be read alone.",
   /** Override at deploy with NEXT_PUBLIC_SITE_URL if needed. */
   url: "https://orgazma.app",
   locale: "en_US",
@@ -33,21 +33,31 @@ export const SITE = {
     url: "/og.jpg",
     width: 1200,
     height: 630,
-    alt: "Orgazma — intimate erotic fiction after dark",
+    alt: "Orgazma, intimate erotic fiction after dark",
   },
   pages: {
     home: {
-      title: "Orgazma — Explicit erotic fiction after midnight",
+      title: "Orgazma: explicit erotic fiction after midnight",
       description:
-        "Filthy bedtime stories for hungry adults. Read explicit erotic fiction under the stars — locked doors only. 18+.",
+        "Filthy bedtime stories for hungry adults. Read explicit erotic fiction under the stars. Locked doors only. 18+.",
     },
     stories: {
-      title: "The Heat — every filthy story",
+      title: "The Archive: every door, chosen by hunger",
       description:
-        "Browse Orgazma's full archive of explicit erotic stories. Hunt a craving. Open a door. Read until you're ruined. 18+.",
+        "Browse Orgazma by craving, heat, length, and touch. Explicit erotic stories for adults who want a room, not a feed. 18+.",
+    },
+    cravings: {
+      title: "Cravings: name the hunger",
+      description:
+        "Step into a mood: dreams, almost caught, strangers, being seen, or her hands. Explicit erotic fiction, 18+.",
+    },
+    nightstand: {
+      title: "Nightstand: stories you kept",
+      description:
+        "Unfinished stories, saved stories, and the ones you already finished. Your private drawer on this device. 18+.",
     },
     about: {
-      title: "After Dark — what Orgazma is",
+      title: "After Dark: what Orgazma is",
       description:
         "Orgazma is a private reading room for adults who want explicit heat, midnight atmosphere, and stories that stay between the sheets. 18+ only.",
     },

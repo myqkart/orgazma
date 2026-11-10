@@ -1,4 +1,4 @@
-# design.md — Design System
+# design.md: Design System
 
 A private, luxurious, dark-blue home for erotic fiction written for adult women. It should feel like a locked door, low lights and a held breath: quiet, unhurried, intimate. The interface teases; the stories deliver.
 
@@ -27,13 +27,13 @@ Derived (same family only):
 Rules: never use Primary as small text on Background (low contrast); use Accent. Button text on Primary is `#0C1420` or `#E6EEF0`, whichever passes 4.5:1. No pure black/white.
 
 ## 3. Typography
-- **Display (titles, hero, story titles):** Cormorant Garamond, 500–600, italic for taglines. Soft, romantic, high-fashion.
+- **Display (titles, hero, story titles):** Cormorant Garamond, 500-600, italic for taglines. Soft, romantic, high-fashion.
 - **Reading body:** Literata 400, 19px default, line-height 1.9, max 62ch.
-- **UI:** Inter 400/500, 13–14px, uppercase labels with 0.12em tracking.
+- **UI:** Inter 400/500, 13-14px, uppercase labels with 0.12em tracking.
 - Hero title 64px desktop / 40px mobile. Section titles 36px. Card titles 26px.
 
 ## 4. Atmosphere
-- Dark, warm-in-feel despite cool palette: use soft radial glows of Accent at 8–12% opacity behind hero and featured story, like candlelight on water.
+- Dark, warm-in-feel despite cool palette: use soft radial glows of Accent at 8-12% opacity behind hero and featured story, like candlelight on water.
 - Fine grain/noise overlay at 3% opacity on Background for a tactile feel.
 - Generous negative space; nothing crowded, nothing loud.
 - Imagery: story `imageUrl` shown with a deep blue gradient overlay (`#0C1420` bottom to transparent), slightly desaturated, so photos feel moody and cohesive. Faces/bodies are never required; atmospheric imagery is preferred.
@@ -51,7 +51,7 @@ Rules: never use Primary as small text on Background (low contrast); use Accent.
 - **Focus ring:** 2px Accent, 3px offset.
 
 ## 7. Motion
-- 250–400ms ease-out. Fade-up on scroll for cards (staggered 60ms).
+- 250-400ms ease-out. Fade-up on scroll for cards (staggered 60ms).
 - Hero: slow pulsing glow (8s loop), headline fades in line by line.
 - Modal: backdrop fades, panel rises 24px and fades in.
 - Respect `prefers-reduced-motion`: disable translate/scale/pulse, keep opacity.

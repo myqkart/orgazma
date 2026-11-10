@@ -111,6 +111,7 @@ export default function RootLayout({
     <html
       lang={SITE.language}
       className={`${display.variable} ${reading.variable} ${sans.variable}`}
+      data-scroll-behavior="smooth"
     >
       <body className="min-h-screen bg-background text-foreground font-sans antialiased relative selection:bg-primary selection:text-foreground">
         <script
