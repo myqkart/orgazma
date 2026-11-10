@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SafeImage } from "@/components/ui/ImageFallback";
 import { NightSky } from "@/components/NightSky";
 import { FlourishOrnament } from "@/components/decor/Ornaments";
+import { Logo } from "@/components/Logo";
 import { StoryAfterglow } from "@/components/StoryAfterglow";
 import { ENDING_LINES } from "@/lib/site";
 import { markFinished, toggleDim, toggleSaved, useDim, useSaved } from "@/lib/nightstand";
@@ -359,14 +360,21 @@ export function StoryView({ story, related, follow }: StoryViewProps) {
         </div>
 
         {/* Floating controls over cover */}
-        <div className="relative z-20 flex items-center justify-between px-4 sm:px-6 md:px-10 pt-[max(1rem,env(safe-area-inset-top))]">
+        <div className="relative z-20 grid grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 sm:px-6 md:px-10 pt-[max(1rem,env(safe-area-inset-top))]">
           <Link
             href="/stories"
-            className="inline-flex items-center gap-2 min-h-11 px-4 rounded-full bg-black/40 backdrop-blur-md border border-white/15 font-sans text-[11px] uppercase tracking-[0.14em] text-foreground hover:text-primary hover:border-primary/40 transition-all touch-manipulation shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+            className="justify-self-start inline-flex items-center gap-2 min-h-11 px-4 rounded-full bg-black/40 backdrop-blur-md border border-white/15 font-sans text-[11px] uppercase tracking-[0.14em] text-foreground hover:text-primary hover:border-primary/40 transition-all touch-manipulation shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
           >
             ← Archive
           </Link>
-          <div className="flex items-center gap-2">
+          <Link
+            href="/"
+            aria-label="Orgazma"
+            className="justify-self-center rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            <Logo className="h-9 w-9 sm:h-10 sm:w-10 drop-shadow-[0_8px_20px_rgba(0,0,0,0.45)]" />
+          </Link>
+          <div className="justify-self-end flex items-center gap-2">
             <button
               type="button"
               onClick={() => toggleDim()}

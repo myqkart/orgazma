@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/Button";
 import { SafeImage } from "@/components/ui/ImageFallback";
 import {
   FlourishOrnament,
-  HeartOrnament,
   RoseOrnament,
   SparkleOrnament,
 } from "@/components/decor/Ornaments";
+import { Logo } from "@/components/Logo";
 import { ATMOS, SITE } from "@/lib/site";
 
 function subscribe(callback: () => void) {
@@ -97,9 +97,10 @@ export function AgeGate({ children }: { children: React.ReactNode }) {
           <div className="absolute inset-0 shimmer-border opacity-20 pointer-events-none rounded-[24px] sm:rounded-[32px]" />
           <div className="relative space-y-5 sm:space-y-6">
             <div className="flex justify-center">
-              <span className="h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-gradient-to-br from-primary to-[#f0c574] flex items-center justify-center shadow-[0_0_30px_rgba(230,179,90,0.45)]">
-                <HeartOrnament className="w-5 h-5 text-[#1a1408]" />
-              </span>
+              <Logo
+                title={SITE.name}
+                className="h-12 w-12 sm:h-14 sm:w-14 drop-shadow-[0_0_28px_rgba(230,179,90,0.45)]"
+              />
             </div>
 
             <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-primary font-semibold">

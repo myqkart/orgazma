@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HeartOrnament, SparkleOrnament } from "@/components/decor/Ornaments";
+import { SparkleOrnament } from "@/components/decor/Ornaments";
+import { Logo } from "@/components/Logo";
 import { SITE } from "@/lib/site";
 
 const LINKS = [
@@ -61,10 +62,8 @@ export function Navigation() {
               className="group flex items-center gap-2 sm:gap-2.5 shrink-0 min-w-0 focus-visible:outline-none touch-manipulation"
             >
               <span className="relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center shrink-0">
-                <span className="absolute inset-0 rounded-full bg-primary/40 blur-md group-hover:bg-primary/60 transition-colors" />
-                <span className="relative h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-gradient-to-br from-primary to-accent/70 flex items-center justify-center ring-1 ring-white/20">
-                  <HeartOrnament className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#1a1408]" />
-                </span>
+                <span className="absolute inset-1 rounded-full bg-primary/45 blur-md group-hover:bg-primary/70 transition-colors" />
+                <Logo className="relative h-8 w-8 sm:h-9 sm:w-9" />
               </span>
               <span className="font-display text-lg sm:text-2xl font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors truncate">
                 {SITE.name}

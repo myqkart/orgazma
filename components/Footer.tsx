@@ -13,6 +13,7 @@ import {
   SparkleOrnament,
   VineCorner,
 } from "@/components/decor/Ornaments";
+import { Logo } from "@/components/Logo";
 import { ATMOS, SITE } from "@/lib/site";
 
 export function Footer({ year = 2026 }: { year?: number }) {
@@ -49,7 +50,8 @@ export function Footer({ year = 2026 }: { year?: number }) {
             <HeartOrnament className="w-4 h-4 sm:w-5 sm:h-5 animate-sparkle-delayed" />
           </div>
 
-          <div className="space-y-2 sm:space-y-3 px-1">
+          <div className="space-y-2 sm:space-y-3 px-1 flex flex-col items-center">
+            <Logo className="h-12 w-12 sm:h-14 sm:w-14 mb-1 drop-shadow-[0_8px_24px_rgba(230,179,90,0.35)]" />
             <p className="font-display text-3xl sm:text-5xl font-semibold tracking-tight text-foreground">
               {SITE.name}
             </p>

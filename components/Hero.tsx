@@ -7,6 +7,7 @@ import {
   SparkleOrnament,
 } from "@/components/decor/Ornaments";
 import { getTonight } from "@/lib/catalog";
+import { Logo } from "@/components/Logo";
 import { ATMOS, SITE } from "@/lib/site";
 
 export function Hero() {
@@ -38,6 +39,7 @@ export function Hero() {
       <SparkleOrnament className="absolute bottom-[34%] right-[8%] sm:bottom-[30%] sm:right-[22%] w-3 h-3 text-accent/70 animate-sparkle-delayed z-10 pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-[1180px] mx-auto px-4 sm:px-6 md:px-8 pb-[max(4rem,env(safe-area-inset-bottom))] sm:pb-20 pt-28 sm:pt-32">
+        <Logo className="h-12 w-12 sm:h-16 sm:w-16 mb-4 sm:mb-5 drop-shadow-[0_10px_28px_rgba(230,179,90,0.4)] animate-fade-rise" />
         <FlourishOrnament className="w-28 sm:w-36 h-7 sm:h-8 text-primary/55 mb-3 sm:mb-4 animate-fade-rise" />
         <p className="font-display text-[2.75rem] leading-[0.92] sm:text-7xl md:text-8xl lg:text-[7.5rem] font-semibold tracking-tight text-foreground animate-fade-rise break-words">
           {SITE.name}
