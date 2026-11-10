@@ -103,7 +103,7 @@ export const SCENES = [
     kicker: "Unhook",
     line: "The clasp is warm from her skin. Take your time ruining it.",
     image: u("photo-1674562958590-ff9e1c97d742", 1800),
-    href: "/stories/brush-of-an-artist",
+    href: "/stories/wedding-album",
     alt: "Woman seen from behind in black lace lingerie on a bed",
   },
   {
@@ -116,11 +116,11 @@ export const SCENES = [
   },
   {
     id: "shower",
-    kicker: "Wet",
-    line: "Water on bare skin. The wall takes her weight. He does not let go.",
-    image: u("photo-1592399668789-6432393d5761", 2000),
+    kicker: "The falls",
+    line: "She went in alone. The waterfall did not stay empty.",
+    image: u("photo-1632311155083-7d50dc1ec10c", 2000),
     href: "/stories/dolphin-under-the-volcano",
-    alt: "Naked couple embracing under a shower",
+    alt: "A woman reclining in the pool beneath a waterfall",
   },
   {
     id: "bodies",
@@ -159,7 +159,7 @@ export const SCENES = [
     kicker: "Behind him",
     line: "She looks over his bare shoulder. You are already in the room.",
     image: u("photo-1542850262-29dc96e280b0", 1800),
-    href: "/stories/forbidden-frequency",
+    href: "/stories/stargazing",
     alt: "Woman looking over a shirtless man's shoulder in low light",
   },
   {
@@ -205,7 +205,7 @@ export const ATMOS = {
     {
       label: "Slow & soaked",
       blurb: "When you want every page to drag a fingernail down your spine.",
-      image: u("photo-1592399668789-6432393d5761", 1200),
+      image: u("photo-1632311155083-7d50dc1ec10c", 1200),
       href: "/dive#shower",
     },
     {

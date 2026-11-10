@@ -165,6 +165,7 @@ export const THREADS: ThreadDef[] = [
       "let-me-click",
       "dolphin-under-the-volcano",
       "i-need-a-trip",
+      "stargazing",
     ],
   },
 ];
@@ -248,6 +249,27 @@ const META: Record<string, StoryMeta> = {
     moods: ["dreams", "strangers", "watched"],
     tropes: ["Forest storm", "Stranger", "The curtain"],
     kinks: ["dreaming", "strangers", "being-seen", "rough"],
+    heat: "ruin",
+    series: "malini",
+  },
+  "wedding-album": {
+    hook: "The choli will not close. The groom's brother is the only one who can reach the hooks.",
+    desire: "A hotel mirror, a red lehenga, and hands that stop pretending they are only helping.",
+    authorNote:
+      "The wedding is still happening downstairs. This room is the part nobody puts in the album.",
+    moods: ["watched"],
+    tropes: ["Wedding hotel", "The mirror", "Red lehenga"],
+    kinks: ["being-seen", "almost-caught"],
+    heat: "ruin",
+  },
+  stargazing: {
+    hook: "The camp is asleep. Malini is not. Vihaan is, until he isn't.",
+    desire: "A sleeping bag, a sky full of witnesses, and a hand over his mouth so nobody wakes.",
+    authorNote:
+      "Everyone else is in the same field. The quiet is the whole risk. She starts it. He finishes awake.",
+    moods: ["quiet", "strangers"],
+    tropes: ["Campfire night", "Under the stars", "Don't wake them"],
+    kinks: ["quiet", "outdoors", "almost-caught"],
     heat: "ruin",
     series: "malini",
   },
