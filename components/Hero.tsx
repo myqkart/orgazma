@@ -21,7 +21,7 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_28%] sm:object-[center_30%] saturate-[0.9] brightness-[0.5] sm:brightness-[0.52] animate-hero-zoom"
+          className="object-cover object-[center_40%] sm:object-[center_35%] saturate-[1.05] brightness-[0.62] sm:brightness-[0.64] animate-hero-zoom"
         />
         <div
           className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/25 sm:via-background/50 sm:to-background/20"

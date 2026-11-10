@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CravingDoors } from "@/components/CravingDoors";
 import { PageBanner } from "@/components/PageBanner";
+import { SceneTrail } from "@/components/SceneTrail";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { getCravingRooms } from "@/lib/catalog";
@@ -59,6 +60,7 @@ export default function CravingsPage() {
           Be more precise
         </Button>
       </Container>
+      <SceneTrail />
     </>
   );
 }

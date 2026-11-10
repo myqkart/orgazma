@@ -7,6 +7,7 @@ import { NightPath } from "@/components/NightPath";
 import { ThreadStrip } from "@/components/ThreadStrip";
 import { ContinueReading } from "@/components/ContinueReading";
 import { ImageRibbon } from "@/components/ImageRibbon";
+import { LustCanvas } from "@/components/LustCanvas";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { getAllCards, getCravingRooms, getNightPath, getThreadRooms, getTonight } from "@/lib/catalog";
@@ -57,6 +58,7 @@ export default function Page() {
       <FeaturedStory story={tonight} />
       <CravingDoors rooms={rooms} />
       <ImageRibbon />
+      <LustCanvas />
       <NightPath steps={path} />
       <HeatShelves groups={heats} />
       {malini && <ThreadStrip room={malini} />}

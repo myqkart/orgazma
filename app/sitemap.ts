@@ -27,6 +27,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: `${SITE.url}/dive`,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
     ...getCravingRooms().map((room) => ({
       url: `${SITE.url}/cravings/${room.id}`,
       changeFrequency: "weekly" as const,

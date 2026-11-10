@@ -18,7 +18,7 @@ import { ATMOS, SITE } from "@/lib/site";
 export function Footer({ year = 2026 }: { year?: number }) {
   const pathname = usePathname();
   const isReading = pathname?.startsWith("/stories/") && pathname !== "/stories";
-  if (isReading) return null;
+  if (isReading || pathname === "/dive") return null;
 
   return (
     <footer className="relative z-10 mt-6 sm:mt-8 overflow-hidden text-muted pb-[env(safe-area-inset-bottom)]">
@@ -29,7 +29,7 @@ export function Footer({ year = 2026 }: { year?: number }) {
             alt=""
             fill
             sizes="100vw"
-            className="object-cover object-center saturate-[0.85] brightness-[0.35]"
+            className="object-cover object-center saturate-[1.05] brightness-[0.48]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/45" />
           <div className="absolute inset-0 bg-[rgba(230,179,90,0.06)]" />
@@ -65,6 +65,7 @@ export function Footer({ year = 2026 }: { year?: number }) {
           <nav className="flex flex-wrap items-center justify-center gap-2 font-sans text-sm w-full px-1">
             {[
               { href: "/", label: "Tonight" },
+              { href: "/dive", label: "Dive" },
               { href: "/cravings", label: "Cravings" },
               { href: "/stories", label: "Archive" },
               { href: "/nightstand", label: "Nightstand" },

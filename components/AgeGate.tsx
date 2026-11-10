@@ -85,7 +85,7 @@ export function AgeGate({ children }: { children: React.ReactNode }) {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center saturate-[0.8] brightness-[0.32]"
+            className="object-cover object-center saturate-[1] brightness-[0.42]"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/65 via-background/85 to-background" />
         </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ArchiveBrowser } from "@/components/ArchiveBrowser";
 import { PageBanner } from "@/components/PageBanner";
+import { SceneTrail } from "@/components/SceneTrail";
 import { getAllCards } from "@/lib/catalog";
 import { ATMOS, SITE } from "@/lib/site";
 
@@ -47,6 +48,7 @@ export default function StoriesPage() {
       <Suspense fallback={<p className="text-center font-reading text-muted py-16">Setting the room…</p>}>
         <ArchiveBrowser cards={cards} />
       </Suspense>
+      <SceneTrail />
     </>
   );
 }

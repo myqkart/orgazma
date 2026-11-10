@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { PageBanner } from "@/components/PageBanner";
+import { SceneTrail } from "@/components/SceneTrail";
 import { StoryDoor } from "@/components/StoryDoor";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -49,6 +50,7 @@ async function CachedThread({ slug }: { slug: string }) {
         </div>
         <Button href="/stories">Wander off her path</Button>
       </Container>
+      <SceneTrail />
     </>
   );
 }

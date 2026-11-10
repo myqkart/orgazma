@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SafeImage } from "@/components/ui/ImageFallback";
+import { SceneTrail } from "@/components/SceneTrail";
 import { ATMOS, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -44,7 +45,7 @@ export default function AboutPage() {
               fill
               priority
               sizes="100vw"
-              className="object-cover object-center saturate-[0.9] brightness-[0.48]"
+              className="object-cover object-center saturate-[1.05] brightness-[0.58]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/55 to-background/25" />
           </div>
@@ -145,6 +146,7 @@ export default function AboutPage() {
           </Button>
         </div>
       </Container>
+      <SceneTrail />
     </>
   );
 }

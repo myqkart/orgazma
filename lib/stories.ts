@@ -43,7 +43,7 @@ function processStories(raw: unknown[]): StoryWithSlug[] {
     const imageUrl =
       typeof s.imageUrl === "string" && s.imageUrl.trim().length > 0
         ? s.imageUrl.trim()
-        : "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1200&q=80";
+        : "https://images.unsplash.com/photo-1640433195067-0f50fc4ecb67?auto=format&fit=crop&w=1200&q=80";
 
     const readTimeMinutes =
       typeof s.readTimeMinutes === "number" && s.readTimeMinutes > 0

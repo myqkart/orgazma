@@ -23,7 +23,7 @@ export function PageBanner({
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center saturate-[0.88] brightness-[0.45]"
+            className="object-cover object-center saturate-[1.05] brightness-[0.58]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/55 to-background/25" />
         </div>

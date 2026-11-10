@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { NightstandLibrary } from "@/components/NightstandLibrary";
+import { SceneTrail } from "@/components/SceneTrail";
 import { PageBanner } from "@/components/PageBanner";
 import { Container } from "@/components/ui/Container";
 import { getAllCards } from "@/lib/catalog";
@@ -26,6 +27,7 @@ export default function NightstandPage() {
       <Container clean className="py-12 sm:py-16 md:py-20">
         <NightstandLibrary cards={cards} />
       </Container>
+      <SceneTrail />
     </>
   );
 }
